@@ -1,0 +1,55 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-24-mcp-tool-use",
+    "number": 24,
+    "title": "工具不该只服务你这一版 Agent｜MCP 与 Tool Use",
+    "summary": "当前版本用本地 MCP 风格目录提供工具、资源和 Prompt，再由 Tool Use 链路读取真实电商业务事实，并继续经过 Hooks 治理。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-24-mcp-tool-use"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_schema": true,
+    "tool_clarification": true,
+    "tool_observation": true,
+    "next_action": true,
+    "degradation": true,
+    "risk_level": true,
+    "needs_human_approval": true,
+    "hooks": true,
+    "safe_trace_summary": true,
+    "mcp": true,
+    "mcp_tools": true,
+    "mcp_resources": true,
+    "mcp_prompts": true,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true
+  },
+  "disabled_reasons": {
+    "workflow": "当前只说明 MCP 与 Tool Use 的关系，不实现售后工作流。",
+    "human_approval": "MCP 可以提供高风险边界资源，但不能替代 HITL 审批。",
+    "memory": "多轮记忆还没有接入。",
+    "trace": "当前只有 Hooks 的公开安全摘要，不开放完整 Trace 查询接口。",
+    "evaluation": "当前没有完整 Evaluation 平台。"
+  }
+}

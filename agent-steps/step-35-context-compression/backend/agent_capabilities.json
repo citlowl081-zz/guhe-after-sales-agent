@@ -1,0 +1,46 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-35-context-compression",
+    "number": 35,
+    "title": "上下文太长，模型开始把中间内容忘掉｜上下文压缩与 Sliding Window",
+    "summary": "当前版本保留 Workflow/HITL/Resume，并加入上下文压缩、最近窗口和相关性选择，避免旧历史挤掉当前订单、工具事实、政策片段和 workflow 状态。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-35-context-compression"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "memory": true,
+    "session_memory": true,
+    "runtime_context": true,
+    "context_builder": false,
+    "workflow": true,
+    "human_approval": true,
+    "chat_resume": true,
+    "context_compression": true,
+    "sliding_window": true,
+    "context_relevance": true,
+    "prompt_injection_defense": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "context_builder": "Step 34 已完整展示 Context Builder；Step 35 继承上下文候选思想，但公开观察面收敛到 compression_report、Sliding Window 和 Context Relevance。",
+    "prompt_injection_defense": "外部文本隔离和注入防护在 Step 36 展开。",
+    "trace": "完整 Trace 属于第九幕。",
+    "evaluation": "完整 Evaluation 属于第九幕。",
+    "cost_summary": "成本治理不属于第八幕。"
+  }
+}

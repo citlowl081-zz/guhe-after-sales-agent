@@ -1,0 +1,59 @@
+{
+  "step": 42,
+  "shared_agent": "agent-steps/step-41-final-rehearsal/backend",
+  "scenarios": [
+    {
+      "id": "logistics_tool_path",
+      "user_message": "请帮我查一下 SO20260602103000009-a1000009 的物流",
+      "runtime_context": {
+        "currentUserOrders": [
+          {
+            "orderNo": "SO20260602103000009-a1000009",
+            "userId": "U1001",
+            "fulfillmentStatus": "SHIPPED",
+            "logisticsStatus": "IN_TRANSIT",
+            "items": [
+              {
+                "productName": "古河智能音箱"
+              }
+            ]
+          }
+        ]
+      },
+      "expected_tools": ["get_order_detail", "get_order_logistics"],
+      "expected_citations": [],
+      "expected_trace_events": ["tool_finished", "cost_recorded"],
+      "expected_cost_path": "light_react_agent"
+    },
+    {
+      "id": "promotion_member_rag_path",
+      "user_message": "618 大促满减和金卡会员券能不能叠加？",
+      "expected_tools": [],
+      "expected_citations": ["promotion_618_stack_rule", "member_coupon_gold_rule"],
+      "expected_trace_events": ["rag_pre_retrieved", "cost_recorded"],
+      "expected_cost_path": "light_react_agent"
+    },
+    {
+      "id": "product_tool_rag_joint_path",
+      "user_message": "降噪耳机现在的标价、活动价和库存分别是多少？另外，平台 618 满减的一般规则是什么？",
+      "expected_tools": ["search_products"],
+      "expected_citations": ["promotion_618_stack_rule"],
+      "expected_trace_events": ["tool_finished", "rag_pre_retrieved", "cost_recorded"],
+      "expected_cost_path": "light_react_agent"
+    },
+    {
+      "id": "faq_model_routed_path",
+      "user_message": "电子发票通常多久能准备好？",
+      "expected_tools": [],
+      "expected_citations": ["invoice_issue"],
+      "expected_trace_events": ["rag_pre_retrieved", "cost_recorded"],
+      "expected_cost_path": "light_react_agent",
+      "expected_cost_path_scope": "first_public_cache_miss",
+      "model_observation": {
+        "offline_guhe_mode": "AGENT_GUHE_DISABLE_LLM 为 1 时，首次未命中请求的 route_planner 和 final_answer 也都为 0。",
+        "first_public_cache_miss": "首次查询且公共缓存未命中时，模型配置可用才会看到 cost_summary.model_calls.route_planner 和 final_answer 为 1。",
+        "public_cache_hit": "cost_summary.cache.common_hit_cache 为 true，path_type 为 cached_faq_light_path，model_calls.final_answer 为 0。缓存在路由之后命中，不能据此推断 model_calls.route_planner 为 0。"
+      }
+    }
+  ]
+}

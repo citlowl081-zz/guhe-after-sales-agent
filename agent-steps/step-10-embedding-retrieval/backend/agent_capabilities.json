@@ -1,0 +1,50 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-10-embedding-retrieval",
+    "number": 10,
+    "title": "第一次向量检索：用户问什么，就找最像的规则｜Embedding 与向量检索",
+    "summary": "当前版本把问题和知识片段转成向量，用相似度、top_k 和 score threshold 选择相关规则。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-10-embedding-retrieval"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "basic_rag": true,
+    "document_chunking": true,
+    "vector_retrieval": true,
+    "rag_citations": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": true
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开执行摘要，不展示模型 reasoning_content。",
+    "rag_citations": "本步只做向量检索，还没有把命中来源返回给调试后台。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。"
+  }
+}

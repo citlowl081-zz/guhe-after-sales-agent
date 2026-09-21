@@ -1,0 +1,49 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-09-document-chunking",
+    "number": 9,
+    "title": "售后规则要先切开，再给每段贴标签｜文档切片与 Metadata",
+    "summary": "当前版本把 Markdown 知识文档规范化、按章节切片，并为每个 chunk 保留 metadata。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-09-document-chunking"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "basic_rag": true,
+    "document_chunking": true,
+    "rag_citations": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": true
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开执行摘要，不展示模型 reasoning_content。",
+    "rag_citations": "本步只整理 chunk 和 metadata，还没有返回引用来源。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。"
+  }
+}

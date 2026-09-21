@@ -1,0 +1,48 @@
+"""运行配置层，集中读取项目环境变量、能力声明和模型连接参数。"""
+
+from __future__ import annotations
+
+import json
+import os
+from pathlib import Path
+from typing import Any
+
+
+BACKEND_DIR = Path(__file__).resolve().parents[1]
+CAPABILITIES_PATH = BACKEND_DIR / "agent_capabilities.json"
+# 项目所有 step 共享一份 guhe.env，Prompt 变化不应该带来重复环境配置。
+DEFAULT_GUHE_ENV_PATH = BACKEND_DIR.parents[1] / "guhe.env"
+PLACEHOLDER_API_KEYS = {"", "你的模型平台 Key", "your-api-key", "YOUR_API_KEY"}
+
+
+def load_agent_capabilities() -> dict[str, Any]:
+    """读取给调试后台使用的配置，不参与 `/chat` 主流程。"""
+
+    with CAPABILITIES_PATH.open(encoding="utf-8") as file:
+        return json.load(file)
+
+
+def load_guhe_env() -> Path | None:
+    """读取全程共享配置。每个 step 后端都复用 agent-steps/guhe.env。"""
+
+    env_path = Path(os.getenv("AGENT_GUHE_ENV", str(DEFAULT_GUHE_ENV_PATH))).expanduser()
+    if not env_path.exists():
+        return None
+
+    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip("\"'")
+        if key:
+            os.environ.setdefault(key, value)
+    return env_path
+
+
+def api_key_is_missing(api_key: str | None) -> bool:
+    """判断模型 Key 是否缺失或仍是项目占位值。"""
+
+    # 占位 Key 要当成未配置处理，不能让它一路打到模型平台才失败。
+    return api_key is None or api_key.strip() in PLACEHOLDER_API_KEYS

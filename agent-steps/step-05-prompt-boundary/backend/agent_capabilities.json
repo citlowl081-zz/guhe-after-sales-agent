@@ -1,0 +1,48 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-05-prompt-boundary",
+    "number": 5,
+    "title": "AI 乱承诺赔钱了，你把规则全塞进 Prompt｜Prompt 边界与长上下文冲突",
+    "summary": "当前版本先用 system prompt 管住客服身份、事实优先级和回答边界，再把活动、售后和客服边界文档全量注入 Prompt，暴露上下文变长与规则冲突问题。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-05-prompt-boundary-full-context"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "rag_citations": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开执行摘要，不展示模型 reasoning_content。",
+    "rag_citations": "这一版是全量 Prompt，不做 RAG 引用。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。",
+    "cost_summary": "本步只粗略观察上下文长度，还没有形成成本响应字段。"
+  }
+}

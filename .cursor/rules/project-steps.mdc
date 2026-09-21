@@ -1,0 +1,36 @@
+---
+description: 古河商城售后协同 Agent 的 Step 推进纪律、运行约定与模型报错处理
+alwaysApply: true
+---
+
+# 古河 — Step 推进守则
+
+细节见根目录 `HANDOFF.md`（个人文件，已在 `.gitignore` 中，不提交）。
+
+## Step 推进
+
+- 46 个 Step（`agent-steps/step-01` … `step-46`）已全部迁移并验证，当前处于"复刻收口 → 改进阶段"之间；新任务先读 `HANDOFF.md` 第 4 节按顺序推进。
+- 一次只做一件用户确认过的事；做完后停下汇报，等确认再做下一件。用户暂停或纠正立即停止。
+- 只改当前任务需要的最小范围，不顺手重构、不提前堆后续能力；改代码前先确认是否会破坏"与参考基线逐字节一致"的前提，若会，先列出再问。
+- 每修一个 `HANDOFF.md` 第 3 节的已知缺陷，先在对应 Step 写回归 case，再改实现，再跑 `/eval/run` 与网关 E2E。
+
+## 运行约定
+
+- 端口：Agent 后端 8000，电商后端 8081（Docker），调试台 5173，Chroma 8001。起新进程前先确认 8000 空闲，测完 `kill`。
+- 起后端：`cd agent-steps/step-NN-*/backend && nohup ../../../.venv/bin/python main.py > /tmp/guhe-step-NN.log 2>&1 &`；Step 01 是本地脚本；Step 42–45 复用 Step 41 后端；Step 46 无后端。
+- 电商后端：`docker compose -f docker-compose.infra.yml up -d --build`；商城演示账号见 `doc/运行手册.md`（`zhangsan / 123456`）。
+- 跑 Shell 不申请 `all` / `full_network` 权限：命令白名单已覆盖 SiliconFlow 与 localhost:8081/8000，多申请只会弹审批卡并导致命令被重复执行。
+- 不读取、打印、复制或提交 `.env`、`agent-steps/guhe.env`；不绕过 `.cursor/hooks/guard-sensitive-shell.py`。
+
+## 模型与报错
+
+- 模型固定硅基流动 `Qwen/Qwen3-8B`（对话与分类），Embedding `BAAI/bge-m3`，Reranker `BAAI/bge-reranker-v2-m3`，以 `agent-steps/guhe.env` 为准；文档或代码默认值与之不一致时按 `HANDOFF.md` 的待办处理，不擅自改代码。
+- 模型报错按 401/403、404、429、网络错误分类；429 是拥堵，不误报 Key 失效；缺 Key 报错不切离线模式。
+- 402 是硅基流动账户余额/账单问题，不是代码问题；停在当前 Step 报告，不要提前做后续 Step。
+- SiliconFlow 高峰期 Qwen3-8B 单轮 30–120 s 属正常；商城网关 `read-timeout-ms: 45000` 会把慢回答兜底成"客服服务暂时繁忙"，先看 Agent 日志 `CHAT_PATH_SUMMARY` 的耗时再判断是否是逻辑错误。
+
+## 验证
+
+- 健康检查只证明进程存活；复杂场景必须从真实用户入口（商城 8081 登录后走 `/api/customer-service/chat`）或 `/chat` 做多轮 E2E，核对 Tool、citation、Workflow、Trace、缓存和超时。
+- 数字必须实际跑出；未测写"尚未验证"。真实 `/chat` 必须确认 `used_model`。
+- 文档与现码冲突时列出再问，不自行裁决。

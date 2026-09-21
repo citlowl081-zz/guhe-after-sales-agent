@@ -1,0 +1,53 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-17-realtime-business-facts",
+    "number": 17,
+    "title": "用户问订单物流，AI 又开始编快递状态｜实时事实与业务接口",
+    "summary": "当前版本让 Agent 识别实时业务事实，通过业务接口取回可信事实，再由真实大模型基于事实组织回答。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-17-realtime-business-facts"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "real_llm_answer": true,
+    "grounded_model_answer": true,
+    "structured_intent": true,
+    "basic_rag": true,
+    "rag_citations": true,
+    "rag_index_cache": true,
+    "realtime_business_facts": true,
+    "tool_calls": false,
+    "tool_clarification": false,
+    "tool_observation": false,
+    "degradation": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "tool_calls": "当前展示的是业务事实状态，不展示工具执行链路。",
+    "tool_clarification": "缺参数时当前只给安全补充提示，候选澄清不在本步展开。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "当前没有完整 Evaluation 平台。"
+  }
+}

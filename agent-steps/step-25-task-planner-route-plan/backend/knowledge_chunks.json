@@ -1,0 +1,56 @@
+[
+  {
+    "chunk_id": "promotion-current-audio-offer",
+    "title": "2026 春季音频节会员价规则",
+    "source_path": "knowledge_chunks.json",
+    "domain": "promotion_policy",
+    "status": "current",
+    "keywords": ["当前", "2026", "春季", "音频节", "降噪", "耳机", "会员", "会员价", "优惠", "优惠券", "满减", "叠加", "活动"],
+    "text": "2026 春季音频节期间，降噪蓝牙耳机参加会员价活动。金卡会员可以看到会员价，但会员价不能再叠加会员券、满减券或其他额外折扣，最终优惠以结算页展示为准。"
+  },
+  {
+    "chunk_id": "promotion-expired-earbuds-offer",
+    "title": "2025 夏季真无线耳机清仓活动复盘",
+    "source_path": "knowledge_chunks.json",
+    "domain": "promotion_policy",
+    "status": "expired",
+    "keywords": ["耳机", "活动", "优惠券", "叠加", "清仓", "旧活动"],
+    "text": "2025 夏季清仓活动曾允许部分商品叠加会员券，但活动已经结束，只能作为历史复盘，不能作为当前客服答复依据。"
+  },
+  {
+    "chunk_id": "product-anc-headphone",
+    "title": "降噪蓝牙耳机商品知识",
+    "source_path": "knowledge_chunks.json",
+    "domain": "product_guide",
+    "status": "current",
+    "keywords": ["降噪", "耳机", "蓝牙", "续航", "通勤", "差旅", "推荐", "商品"],
+    "text": "降噪蓝牙耳机支持主动降噪、双设备连接和 32 小时综合续航，适合通勤、差旅和开放办公场景。库存、当前价格和优惠必须以业务系统为准。"
+  },
+  {
+    "chunk_id": "after-sale-seven-day-return",
+    "title": "签收后 7 天无理由退货",
+    "source_path": "knowledge_chunks.json",
+    "domain": "after_sale_policy",
+    "status": "current",
+    "keywords": ["签收", "7天", "七天", "无理由", "退货", "退款", "不合适", "还能退", "包装", "配件"],
+    "text": "用户签收后 7 天内，在商品完好、不影响二次销售、配件齐全、包装和赠品完整的情况下，通常可以申请无理由退货。是否满足条件还需要结合真实订单状态核验。"
+  },
+  {
+    "chunk_id": "after-sale-quality-issue",
+    "title": "质量问题售后边界",
+    "source_path": "knowledge_chunks.json",
+    "domain": "after_sale_policy",
+    "status": "current",
+    "keywords": ["质量问题", "坏了", "无法开机", "退款", "退货", "凭证", "售后"],
+    "text": "商品无法开机、明显损坏或功能异常时，客服不能直接承诺退款到账或赔偿，需要核验订单、签收时间、商品状态和售后规则。"
+  },
+  {
+    "chunk_id": "invoice-title-change",
+    "title": "电子发票抬头修改规则",
+    "source_path": "knowledge_chunks.json",
+    "domain": "invoice_policy",
+    "status": "current",
+    "keywords": ["发票", "电子发票", "抬头", "税号", "开票", "修改"],
+    "text": "电子发票抬头和税号能否修改，需要以订单当前开票状态为准；已经开具时应按古河商城公司的发票更正流程处理。"
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-33-runtime-context",
+    "number": 33,
+    "title": "用户自称是 VIP，不代表他真是 VIP｜Runtime Context",
+    "summary": "当前版本在保留 Workflow/HITL/Resume 的基础上，引入可信 Runtime Context，把登录态、会员等级、风险等级和页面上下文拆成模型可见通道与系统校验通道。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-33-runtime-context"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "memory": true,
+    "session_memory": true,
+    "runtime_context": true,
+    "workflow": true,
+    "human_approval": true,
+    "chat_resume": true,
+    "runtime_context_dual_channel": true,
+    "permission_check": true,
+    "context_builder": false,
+    "context_compression": false,
+    "prompt_injection_defense": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "context_builder": "历史消息、工具结果和 RAG 片段的统一编排在 Step 34 展开。",
+    "context_compression": "上下文压缩和 Sliding Window 在 Step 35 展开。",
+    "prompt_injection_defense": "外部文本隔离和注入防护在 Step 36 展开。",
+    "trace": "完整 Trace 属于第九幕。",
+    "evaluation": "完整 Evaluation 属于第九幕。",
+    "cost_summary": "成本治理不属于第八幕。"
+  }
+}

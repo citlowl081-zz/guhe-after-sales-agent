@@ -1,0 +1,41 @@
+# Public code package local artifacts
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.chroma/
+.workflow_checkpoints/
+guhe.env
+
+# Local secrets
+.env
+.env.local
+
+# Personal working notes (not published)
+HANDOFF.md
+MISTAKES.md
+
+# Node / frontend
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Java / Maven
+target/
+.mvn/repository/
+# Maven 预热缓存包约 145 MB，超过 GitHub 单文件上限；Dockerfile 在缺失时会自动改为远程下载依赖
+ecommerce-backend/docker/m2-cache.tar.gz
+
+# Runtime output
+logs/
+downloads/
+*.log
+*.pid
+test-results/
+playwright-report/
+coverage/

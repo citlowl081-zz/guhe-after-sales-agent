@@ -1,0 +1,56 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-14-reranker",
+    "number": 14,
+    "title": "相似规则太多，top-k 第一名不一定真对｜Reranker 重排",
+    "summary": "当前版本在查询改写后增加 reranker 层：默认用轻量重排拆解原理，配置商业 reranker 后可切到真实精排服务，让最终 citations 更贴近用户问题。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-14-reranker"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "basic_rag": true,
+    "document_chunking": true,
+    "vector_retrieval": true,
+    "rag_citations": true,
+    "rag_quality_check": true,
+    "query_rewrite": true,
+    "reranker": true,
+    "hybrid_rag": false,
+    "rag_index_cache": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开 RAG 过程摘要，不展示模型隐藏推理。",
+    "hybrid_rag": "关键词和向量混合召回留到 Step 15。",
+    "rag_index_cache": "索引更新和 RAG 缓存留到 Step 16。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "当前只有 RAG 重排和低置信兜底检查思路，没有完整 Evaluation 平台。"
+  }
+}

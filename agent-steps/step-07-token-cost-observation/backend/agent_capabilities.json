@@ -1,0 +1,47 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-07-token-cost-observation",
+    "number": 7,
+    "title": "月底账单来了：先看见每轮都烧了多少 token｜Token 观察",
+    "summary": "当前版本在 Prompt Registry 基础上返回 cost_summary，优先记录模型 usage，没有 usage 时用本地估算兜底。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-07-token-cost-observation"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "rag_citations": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": true
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开执行摘要，不展示模型 reasoning_content。",
+    "rag_citations": "本步只观察 Prompt 成本，还没有接入 RAG 引用。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。"
+  }
+}

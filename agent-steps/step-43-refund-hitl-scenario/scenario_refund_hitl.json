@@ -1,0 +1,30 @@
+{
+  "step": 43,
+  "shared_agent": "agent-steps/step-41-final-rehearsal/backend",
+  "start": {
+    "session_id": "step43-refund",
+    "user_message": "SO20260601090000008-a1000008 还没发货，我现在能退款吗？",
+    "runtime_context": {
+      "currentUserOrders": [
+        {
+          "orderNo": "SO20260601090000008-a1000008",
+          "userId": "U1001",
+          "fulfillmentStatus": "PAID_PENDING_SHIPMENT",
+          "items": [
+            {
+              "productName": "降噪蓝牙耳机"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_pending_action": "require_approval",
+    "expected_citation": "refund_before_shipping"
+  },
+  "resume": {
+    "reviewer_id": "manager-01",
+    "reviewer_role": "after_sale_manager",
+    "decision": "approved",
+    "expected_status": "completed"
+  }
+}

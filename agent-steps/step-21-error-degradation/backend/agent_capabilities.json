@@ -1,0 +1,52 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-21-error-degradation",
+    "number": 21,
+    "title": "模型服务抽风、工具超时，客服不能一起瘫｜错误分类与降级",
+    "summary": "当前版本在真实电商业务事实读取链路上增加错误分类、只读工具超时重试、模板兜底、高风险写操作阻断、risk_level 和 needs_human_approval。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-21-error-degradation"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "rag_citations": true,
+    "rag_index_cache": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_schema": true,
+    "tool_clarification": true,
+    "tool_observation": true,
+    "next_action": true,
+    "degradation": true,
+    "risk_level": true,
+    "needs_human_approval": true,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "workflow": "当前只做降级和转人工口径，不实现售后工作流。",
+    "human_approval": "当前只标记 needs_human_approval，不实现 HITL 审批。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "当前没有完整 Evaluation 平台。"
+  }
+}

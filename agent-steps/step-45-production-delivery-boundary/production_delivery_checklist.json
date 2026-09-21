@@ -1,0 +1,35 @@
+{
+  "step": 45,
+  "shared_agent": "agent-steps/step-41-final-rehearsal/backend",
+  "delivery_decision": "limited_gray_release_ready",
+  "guhe_eval": {
+    "case_count": 15,
+    "expected_passed": 15,
+    "expected_failed": 0,
+    "mode": "explicit_offline_guhe_mode",
+    "does_not_prove": ["real_model_quality", "real_business_backend_reliability", "production_load_and_cost"]
+  },
+  "must_have_evidence": [
+    "tool_calls",
+    "citations",
+    "session_state.workflow",
+    "trace_event_v1",
+    "eval_report_v1",
+    "cost_summary_v1"
+  ],
+  "gray_release": {
+    "entry": "only_logged_in_support_users",
+    "scope": "faq_logistics_policy_and_refund_application_triage",
+    "manual_guard": "after_sale_manager_required_for_refund_approval"
+  },
+  "rollback": {
+    "trigger": ["eval_failed", "tool_error_spike", "security_boundary_violation", "cost_budget_warning"],
+    "fallback": "transfer_to_human"
+  },
+  "explicit_non_goals": [
+    "real_money_refund_execution",
+    "auto_approval_without_hitl",
+    "full_finops_billing",
+    "knowledge_ops_platform"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-04-intent-structured-output",
+    "number": 4,
+    "title": "AI 说“我帮你处理”，售后却没收到退货请求｜结构化输出与意图识别",
+    "summary": "当前版本让 /chat 响应第一次返回 intent，并让真实大模型基于结构化意图生成克制客服回复。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-04-intent-structured-output"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true,
+    "structured_intent": true,
+    "rag_citations": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开执行摘要，不展示模型 reasoning_content。",
+    "rag_citations": "RAG 和引用来源还没有接入。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。",
+    "cost_summary": "成本统计还没有接入。"
+  }
+}

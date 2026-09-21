@@ -1,0 +1,59 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-25-task-planner-route-plan",
+    "number": 25,
+    "title": "工具、知识库、流程都有了，用户一句话到底走哪条路｜TaskPlanner 与 RoutePlan",
+    "summary": "当前版本加入 TaskPlanner，返回 RoutePlan，把用户请求分到 RAG、Tool、Tool + RAG 或高风险售后路径，并用真实电商事实执行允许的轻路径。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-25-task-planner-route-plan"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "route_planner": true,
+    "route_plan": true,
+    "tool_candidates": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_clarification": true,
+    "tool_observation": true,
+    "citations": true,
+    "risk_level": true,
+    "needs_human_approval": true,
+    "mcp": false,
+    "hooks": false,
+    "workflow": false,
+    "human_approval": false,
+    "chat_resume": false,
+    "checkpoint": false,
+    "idempotency": false,
+    "memory": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "workflow": "当前只返回 requires_workflow 路由信号，不执行 LangGraph 工作流。",
+    "human_approval": "当前只标记高风险需要人工或受控路径，不生成审批单。",
+    "mcp": "当前重点是 TaskPlanner 与 RoutePlan，没有暴露 MCP catalog、resource 或 prompt 上下文。",
+    "hooks": "当前没有 hook_events 或 HookManager 治理输出，工具链路治理已在 Step 23–24 展示。",
+    "chat_resume": "恢复协议还没有开放。",
+    "checkpoint": "当前没有可恢复 workflow checkpoint。",
+    "trace": "当前只返回公开 planner_trace，不开放完整 Trace 查询接口。",
+    "evaluation": "当前没有完整 Evaluation 平台。"
+  }
+}

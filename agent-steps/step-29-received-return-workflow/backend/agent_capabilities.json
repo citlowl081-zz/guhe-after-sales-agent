@@ -1,0 +1,54 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-29-received-return-workflow",
+    "number": 29,
+    "title": "已签收退货：要看时间、商品、原因、政策｜签收后退货流程",
+    "summary": "当前版本在未发货退款之外加入签收后退货流程，读取真实签收时间、商品可退属性、退货原因和政策依据。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-29-received-return-workflow"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_observation": true,
+    "citations": true,
+    "risk_level": true,
+    "needs_human_approval": true,
+    "high_risk_action_boundary": true,
+    "after_sale_assessment": true,
+    "workflow": true,
+    "langgraph_stategraph": true,
+    "unshipped_refund_workflow": true,
+    "received_return_workflow": true,
+    "human_approval": false,
+    "chat_resume": false,
+    "checkpoint": false,
+    "idempotency": false,
+    "memory": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "human_approval": "当前只判断是否可准备退款或退货申请，不生成审批单。",
+    "chat_resume": "恢复协议要到 Step 31 才出现。",
+    "checkpoint": "当前没有可恢复 workflow checkpoint。",
+    "idempotency": "当前不提交业务申请，因此不生成幂等键。"
+  }
+}

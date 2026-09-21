@@ -1,0 +1,128 @@
+{
+  "step": 46,
+  "title": "老板问还能不能更强，你把路线图和项目表达一起讲清楚｜生产增强路线图与项目收束",
+  "mainline_agent_reused": "agent-steps/step-41-final-rehearsal/backend",
+  "roadmap_boundary": "本步只讲增强方向、适用场景和取舍，不继续展开主线实现。",
+  "operational_improvements": [
+    {
+      "id": "campaign_rule_ops",
+      "name": "活动规则运营",
+      "improvement": "运营可以维护活动规则、适用人群、起止时间、互斥关系、发布状态和回滚记录。",
+      "boundary": "需要运营后台、审核流和版本发布，不属于当前客服 Agent 回答链路。"
+    },
+    {
+      "id": "after_sale_policy_ops",
+      "name": "售后政策运营",
+      "improvement": "退款、退货、补偿和会员权益可以沉淀为可审核、可生效、可追溯的政策版本。",
+      "boundary": "政策变更影响资金和承诺边界，必须有权限、审批和审计。"
+    },
+    {
+      "id": "knowledge_quality_ops",
+      "name": "知识质检",
+      "improvement": "运营可以查看 citation 缺失、低置信兜底、用户追问失败和人工修正建议。",
+      "boundary": "当前主线有 trace/eval 证据，但没有面向运营的质检工作台。"
+    },
+    {
+      "id": "feedback_task_ops",
+      "name": "反馈闭环",
+      "improvement": "差评、客服质检、主管改写和事故复盘可以进入新 case、知识修订和 Prompt/RAG/Tool 改进任务。",
+      "boundary": "当前步程只做失败归因和回归思路，没有产品化成运营任务流。"
+    },
+    {
+      "id": "cost_staffing_ops",
+      "name": "成本与人效运营",
+      "improvement": "运营可以统计轻路径、重路径、转人工、缓存命中和高频 FAQ 的成本与人效变化。",
+      "boundary": "成本治理不能绕过高风险校验，必须和风险分层一起设计。缓存命中不等于全链路零模型调用，不能推断 route_planner 为 0。"
+    },
+    {
+      "id": "permission_audit_ops",
+      "name": "权限与审计",
+      "improvement": "区分客服、运营、售后主管和管理员能看什么、改什么、发布什么。",
+      "boundary": "权限设计不清会暴露内部 SOP、隐私或高风险操作。"
+    }
+  ],
+  "roadmap_stages": [
+    {
+      "stage": "下一阶段可落地",
+      "directions": [
+        "知识运营后台",
+        "政策版本发布",
+        "质检工作台",
+        "反馈闭环",
+        "生产级缓存与成本治理",
+        "多知识库与权限过滤"
+      ],
+      "decision_rule": "已有明确运营痛点，并且可以复用当前 trace、eval、RAG、Tool 和成本证据。"
+    },
+    {
+      "stage": "更长期方向",
+      "directions": [
+        "RAG Fusion",
+        "完整 BM25 / ES",
+        "ANN 深入",
+        "Subagents",
+        "RLHF 或偏好数据训练"
+      ],
+      "decision_rule": "需要更大规模数据、基础设施、权限体系、组织分工或模型训练流程，适合在运营闭环稳定后再做。"
+    }
+  ],
+  "directions": [
+    {
+      "id": "knowledge_ops_console",
+      "name": "知识运营后台",
+      "when_to_use": "活动、售后、会员规则频繁更新，需要运营同事提交、审核、发布和回滚知识。",
+      "tradeoff": "提升知识治理效率，但会引入权限、审核流、版本发布和回滚成本。",
+      "mainline_implemented": false
+    },
+    {
+      "id": "rag_fusion",
+      "name": "RAG Fusion",
+      "when_to_use": "用户问题很口语化，单次 query rewrite 仍然召回不稳。",
+      "tradeoff": "多查询能提高召回覆盖，但会增加检索次数、rerank 成本和结果去重复杂度。",
+      "mainline_implemented": false
+    },
+    {
+      "id": "multi_kb_permission_filter",
+      "name": "多知识库与权限过滤",
+      "when_to_use": "客服、运营、售后主管看到的知识范围不同，内部 SOP 不能全部给普通客服或用户。",
+      "tradeoff": "能控制知识可见性，但需要权限模型、metadata 规范和审计。",
+      "mainline_implemented": false
+    },
+    {
+      "id": "bm25_es_search",
+      "name": "完整 BM25 / ES",
+      "when_to_use": "商品名、活动编号、订单政策关键词精确匹配需求很强。",
+      "tradeoff": "关键词检索更可控，但要维护搜索基础设施、分词、字段权重和同步链路。",
+      "mainline_implemented": false
+    },
+    {
+      "id": "ann_deep_dive",
+      "name": "ANN 深入",
+      "when_to_use": "知识规模扩大后，向量检索延迟和召回稳定性成为瓶颈。",
+      "tradeoff": "近似检索更快，但要在延迟、召回率、索引构建和内存成本之间取舍。",
+      "mainline_implemented": false
+    },
+    {
+      "id": "cache_cost_optimization",
+      "name": "生产级缓存与成本治理",
+      "current_baseline": "Step 41 已实现按知识版本和 policy_id 隔离的进程内公共 FAQ 知识缓存，并记录缓存命中和模型调用成本摘要。当前只覆盖 FAQ 分支，活动规则仍走 RAG。缓存命中只表示最终话术模型调用可省，不能推断 route_planner 为 0。",
+      "when_to_use": "高频 FAQ 等稳定公开知识重复请求多，单进程缓存无法支撑多实例共享、统一失效和灰度发布时。",
+      "tradeoff": "多级或分布式缓存能降低成本和延迟，但要处理版本、失效、热点和一致性；当前活动规则仍走 RAG，订单、物流、库存等实时或用户相关事实不能缓存为公共答案。",
+      "mainline_implemented": false
+    },
+    {
+      "id": "feedback_loop_rlhf_boundary",
+      "name": "反馈闭环与 RLHF 边界",
+      "when_to_use": "线上差评、客服质检和人工修正已经能稳定沉淀，需要更系统地利用偏好数据。",
+      "tradeoff": "Human Feedback Loop 先服务归因和回归；RLHF 是训练范式，需要偏好数据、训练流程和模型评估，不能把差评直接塞进 Prompt 当作 RLHF。",
+      "mainline_implemented": false
+    },
+    {
+      "id": "subagents",
+      "name": "Subagents",
+      "when_to_use": "客服 Agent 已经稳定，需要把质检、知识运营、退款审核辅助、活动配置检查拆成专门助手。",
+      "tradeoff": "分工会更清晰，但会带来路由、权限、共享上下文、审计和跨 Agent 失败归因成本。",
+      "mainline_implemented": false
+    }
+  ]
+}

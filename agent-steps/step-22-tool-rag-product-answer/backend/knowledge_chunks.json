@@ -1,0 +1,29 @@
+[
+  {
+    "chunk_id": "product-anc-headphone",
+    "title": "降噪蓝牙耳机",
+    "source_path": "product_guide.md",
+    "section": "降噪蓝牙耳机",
+    "topic": "product",
+    "keywords": ["ANC", "蓝牙", "降噪", "耳机", "通勤", "差旅", "续航", "推荐"],
+    "text": "降噪蓝牙耳机支持主动降噪、双设备连接和 32 小时综合续航，适合通勤、差旅和开放办公场景。库存、当前价格、优惠活动必须以商品系统或结算页为准。"
+  },
+  {
+    "chunk_id": "promotion-current-audio-offer",
+    "title": "2026 618 消费电子会场会员价规则",
+    "source_path": "promotion_policy.md",
+    "section": "2026 618 消费电子会场会员价规则",
+    "topic": "promotion",
+    "keywords": ["2026", "618", "消费电子", "会员价", "金卡", "优惠券", "满减", "叠加", "结算页", "耳机"],
+    "text": "2026 年 618 消费电子会场期间，降噪蓝牙耳机参加会员价活动。金卡会员可以看到会员价，但会员价不能再叠加会员券、满减券或其他额外折扣，最终优惠以结算页展示为准。"
+  },
+  {
+    "chunk_id": "after-sale-quality-issue",
+    "title": "质量问题售后",
+    "source_path": "after_sale_policy.md",
+    "section": "质量问题售后",
+    "topic": "after_sale",
+    "keywords": ["质量问题", "退款", "退货", "售后"],
+    "text": "如果用户反馈商品无法开机、明显损坏、功能异常或配件缺失，客服不能直接承诺退款到账，也不能承诺赔偿。需要核验订单、签收时间、商品状态和售后规则。"
+  }
+]

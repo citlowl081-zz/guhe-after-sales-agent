@@ -1,0 +1,48 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-08-rag-thinking",
+    "number": 8,
+    "title": "你发现问题不是模型笨，是你喂得太粗暴｜RAG 思路",
+    "summary": "当前版本从全量 Prompt 转向基础 RAG 思路：先找相关知识，再把少量上下文交给模型回答。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-08-rag-thinking"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "basic_rag": true,
+    "rag_citations": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": true
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开执行摘要，不展示模型 reasoning_content。",
+    "rag_citations": "本步只把相关知识放进回答上下文，还没有返回引用来源。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-22-tool-rag-product-answer",
+    "number": 22,
+    "title": "商品推荐终于靠谱了：库存、价格、知识一起看｜Tool + RAG 联合回答",
+    "summary": "当前版本把真实商品库存价格工具和商品知识 RAG 联合起来回答商品咨询，并继续阻断高风险售后动作。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-22-tool-rag-product-answer"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "basic_rag": true,
+    "rag_citations": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_schema": true,
+    "tool_clarification": false,
+    "tool_observation": true,
+    "next_action": true,
+    "degradation": true,
+    "risk_level": true,
+    "needs_human_approval": true,
+    "tool_rag_joint_answer": true,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true
+  },
+  "disabled_reasons": {
+    "workflow": "当前只做商品 Tool + RAG 联合回答，不进入售后工作流。",
+    "human_approval": "当前只标记高风险边界，不实现 HITL 审批。",
+    "tool_clarification": "当前缺商品信息时只返回 fallback_answer，还没有结构化澄清对象。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理会在第六幕出现。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "当前没有完整 Evaluation 平台。"
+  }
+}

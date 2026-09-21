@@ -1,0 +1,57 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-01-model-messages",
+    "number": 1,
+    "title": "客服全跑了，老板让你下楼接电话｜Message 输入输出",
+    "summary": "当前版本只是本地脚本，演示 system/user messages 如何交给模型，以及如何从真实模型响应里取出 assistant message。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-01-model-messages"
+  },
+  "runtime": {
+    "type": "local_script",
+    "entrypoint": "main.py"
+  },
+  "endpoints": {
+    "health": false,
+    "chat": false,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "local_model_messages": true,
+    "chat": false,
+    "runtime_context": false,
+    "reasoning_summary": false,
+    "reasoning_content": false,
+    "structured_intent": false,
+    "rag_citations": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "chat": "Step 01 只运行本地 main.py，不提供 HTTP /chat 接口。",
+    "runtime_context": "Step 01 还没有接入外部系统上下文。",
+    "reasoning_summary": "Step 01 只观察模型 message 输入输出，不生成公开执行摘要。",
+    "reasoning_content": "Step 01 不展示模型 hidden reasoning。",
+    "structured_intent": "结构化意图识别从 Step 04 开始。",
+    "rag_citations": "RAG 和引用来源还没有接入。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。",
+    "cost_summary": "成本统计还没有接入。"
+  }
+}

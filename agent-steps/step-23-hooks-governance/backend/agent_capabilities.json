@@ -1,0 +1,53 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-23-hooks-governance",
+    "number": 23,
+    "title": "工具越来越多，重复治理代码开始漏风｜Hooks 治理",
+    "summary": "当前版本把真实电商工具调用前参数校验、工具调用后安全 Observation、异常降级和本轮完成摘要收拢到 Hooks 治理点。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-23-hooks-governance"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_schema": true,
+    "tool_clarification": true,
+    "tool_observation": true,
+    "next_action": true,
+    "degradation": true,
+    "risk_level": true,
+    "needs_human_approval": true,
+    "hooks": true,
+    "safe_trace_summary": true,
+    "workflow": false,
+    "human_approval": false,
+    "mcp": false,
+    "memory": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true
+  },
+  "disabled_reasons": {
+    "workflow": "当前只做工具链路治理，不实现售后工作流。",
+    "human_approval": "Hooks 只能记录治理边界，不能替代 HITL 审批。",
+    "mcp": "MCP 会在 Step 24 作为工具、资源和 Prompt 的标准化来源出现。",
+    "memory": "多轮记忆还没有接入。",
+    "trace": "当前只有 Hooks 的公开安全摘要，不开放完整 Trace 查询接口。",
+    "evaluation": "当前没有完整 Evaluation 平台。"
+  }
+}

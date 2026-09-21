@@ -1,0 +1,49 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-03-llm-customer-boundary",
+    "number": 3,
+    "title": "第一版 AI 很会聊天，却一句业务都答不准｜LLM 客服边界",
+    "summary": "当前版本让 /chat 使用第一版 LLM 客服回答业务问题，但还没有接入活动、订单、物流、退款或工具事实。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-03-llm-customer-boundary"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": false,
+    "rag_citations": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开执行摘要，不展示模型 reasoning_content。",
+    "structured_intent": "当前版本还没有开放结构化意图识别。",
+    "rag_citations": "RAG 和引用来源还没有接入。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。",
+    "cost_summary": "成本统计还没有接入。"
+  }
+}

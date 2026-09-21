@@ -1,0 +1,50 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-12-rag-quality-fallback",
+    "number": 12,
+    "title": "命中了不代表命对了，找不到依据也不能硬编｜RAG 质量评测与低置信兜底",
+    "summary": "当前版本在 citations 基础上增加固定问题集质量检查和低置信兜底，不让 Agent 硬编规则结论。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-12-rag-quality-fallback"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "basic_rag": true,
+    "document_chunking": true,
+    "vector_retrieval": true,
+    "rag_citations": true,
+    "rag_quality_check": true,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": true
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本展示公开 citations 和 RAG 质量摘要，不展示模型 reasoning_content。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "本步只有固定问题集轻量质量检查，还没有进入完整 Evaluation 平台。"
+  }
+}

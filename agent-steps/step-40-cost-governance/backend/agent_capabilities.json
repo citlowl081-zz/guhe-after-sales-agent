@@ -1,0 +1,54 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-40-cost-governance",
+    "number": 40,
+    "title": "老板又看账单，你开始做成本分层｜成本治理",
+    "summary": "当前版本保留 Workflow/HITL/Resume，并在 session_state 和 trace 中返回 cost_summary_v1，区分轻路径、重路径、常见命中缓存、上下文 token、Prompt 片段和 Observation 压缩。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-40-cost-governance"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": true,
+    "eval_run": true
+  },
+  "features": {
+    "chat": true,
+    "memory": false,
+    "session_memory": false,
+    "runtime_context": true,
+    "context_builder": false,
+    "context_compression": false,
+    "prompt_injection_defense": true,
+    "workflow": true,
+    "human_approval": true,
+    "chat_resume": true,
+    "trace": true,
+    "public_trace_schema": true,
+    "hidden_cot_protection": true,
+    "evaluation": true,
+    "eval_report": true,
+    "fixed_cases": true,
+    "feedback_submit": true,
+    "failure_attribution": true,
+    "eval_case_backfill": true,
+    "cost_summary": true,
+    "cost_governance": true,
+    "light_heavy_path": true,
+    "common_hit_cache": true,
+    "observation_compression": true,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "memory": "Step 40 聚焦成本治理，不再暴露 Step 32 的 Session Memory 面板。",
+    "session_memory": "当前响应不返回 session_state.memory，避免调试台误判为 Memory 项目。",
+    "context_builder": "成本治理只统计公开上下文 token，不返回 Step 34 的 context_report。",
+    "context_compression": "成本治理只展示 Observation 压缩和 token 预算，不返回 Step 35 的 compression_report。"
+  }
+}

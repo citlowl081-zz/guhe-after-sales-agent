@@ -1,0 +1,51 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-18-tool-calling",
+    "number": 18,
+    "title": "给 Agent 一套工具箱，但参数和身份不能乱来｜Tool Calling",
+    "summary": "当前版本把订单物流、商品库存和退款进度查询包装成只读工具，返回 Action / Observation 和 tool_calls。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-18-tool-calling"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "rag_citations": true,
+    "rag_index_cache": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_schema": true,
+    "tool_clarification": false,
+    "tool_observation": false,
+    "degradation": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "tool_clarification": "当前版本只做参数抽取和工具执行，缺参数澄清在 Step 19 出现。",
+    "tool_observation": "当前 Observation 还没有做 ToolResult 压缩和 next_action。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "当前没有完整 Evaluation 平台。"
+  }
+}

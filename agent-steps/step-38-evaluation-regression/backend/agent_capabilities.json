@@ -1,0 +1,50 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-38-evaluation-regression",
+    "number": 38,
+    "title": "改 Prompt 后，物流好了，退款炸了｜Evaluation 回归评测",
+    "summary": "当前版本保留 Workflow/HITL/Resume，并增加 /eval/run，从固定 cases.yml 调用真实 Agent 链路，检查 answer、tool_calls、citations、trace、session_state 和 workflow 是否回归。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-38-evaluation-regression"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": true,
+    "eval_run": true
+  },
+  "features": {
+    "chat": true,
+    "memory": false,
+    "session_memory": false,
+    "runtime_context": true,
+    "context_builder": false,
+    "context_compression": false,
+    "prompt_injection_defense": true,
+    "workflow": true,
+    "human_approval": true,
+    "chat_resume": true,
+    "trace": true,
+    "public_trace_schema": true,
+    "hidden_cot_protection": true,
+    "evaluation": true,
+    "eval_report": true,
+    "fixed_cases": true,
+    "failure_attribution": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "memory": "Step 38 聚焦 Eval 回归，不再暴露 Step 32 的 Session Memory 面板。",
+    "session_memory": "当前响应不返回 session_state.memory，避免调试台误判为 Memory 项目。",
+    "context_builder": "Eval 断言公开 trace/session_state 证据，不返回 Step 34 的 context_report。",
+    "context_compression": "Eval 断言公开 trace/session_state 证据，不返回 Step 35 的 compression_report。",
+    "failure_attribution": "失败归因与反馈闭环属于 Step 39。",
+    "cost_summary": "成本治理属于 Step 40。"
+  }
+}

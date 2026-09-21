@@ -1,0 +1,52 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-27-langgraph-workflow",
+    "number": 27,
+    "title": "自由 Agent 不适合跑售后流程，你把流程画死｜LangGraph 工作流",
+    "summary": "当前版本用 LangGraph StateGraph 固定高风险售后节点顺序，让退款和退货先经过真实订单、物流、政策和资格判断。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-27-langgraph-workflow"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_observation": true,
+    "citations": true,
+    "risk_level": true,
+    "needs_human_approval": true,
+    "high_risk_action_boundary": true,
+    "after_sale_assessment": true,
+    "workflow": true,
+    "langgraph_stategraph": true,
+    "human_approval": false,
+    "chat_resume": false,
+    "checkpoint": false,
+    "idempotency": false,
+    "memory": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "human_approval": "当前只把售后流程画成固定节点，还没有生成审批单。",
+    "chat_resume": "恢复协议要到 Step 31 才出现。",
+    "checkpoint": "当前 StateGraph 不保存可恢复 checkpoint。",
+    "idempotency": "当前不提交申请，因此不生成幂等键。"
+  }
+}

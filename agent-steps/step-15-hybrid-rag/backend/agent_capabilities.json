@@ -1,0 +1,57 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-15-hybrid-rag",
+    "number": 15,
+    "title": "只靠向量不行，关键词和规则路由也要上｜Hybrid RAG",
+    "summary": "当前版本把 pre-retrieval、关键词召回、场景词过滤和向量召回组合成 Hybrid RAG。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-15-hybrid-rag"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "basic_rag": true,
+    "document_chunking": true,
+    "vector_retrieval": true,
+    "rag_citations": true,
+    "rag_quality_check": true,
+    "query_rewrite": true,
+    "reranker": true,
+    "hybrid_rag": true,
+    "keyword_retrieval": true,
+    "pre_retrieval": true,
+    "rag_index_cache": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开 RAG 过程摘要，不展示模型隐藏推理。",
+    "rag_index_cache": "索引更新和 RAG 缓存留到 Step 16。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "当前只有 RAG 检索链路验证，没有完整 Evaluation 平台。"
+  }
+}

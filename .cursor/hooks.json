@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": ".cursor/hooks/guard-sensitive-shell.py",
+        "timeout": 5,
+        "failClosed": true
+      }
+    ]
+  }
+}

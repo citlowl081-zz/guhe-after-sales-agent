@@ -1,0 +1,46 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-34-context-builder",
+    "number": 34,
+    "title": "历史消息、工具结果、RAG 片段全挤在一起，模型开始串台｜Context Builder",
+    "summary": "当前版本保留 Workflow/HITL/Resume，并加入 Context Builder，为用户文本、Runtime Context、Session Memory、工具 Observation、RAG 片段和 Workflow State 标注来源、可信度和冲突处理结果。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-34-context-builder"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "memory": true,
+    "session_memory": true,
+    "runtime_context": true,
+    "workflow": true,
+    "human_approval": true,
+    "chat_resume": true,
+    "context_builder": true,
+    "source_trust_level": true,
+    "fact_conflict_resolution": true,
+    "context_compression": false,
+    "prompt_injection_defense": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "context_compression": "上下文压缩和 Sliding Window 在 Step 35 展开。",
+    "prompt_injection_defense": "外部文本隔离和注入防护在 Step 36 展开。",
+    "trace": "完整 Trace 属于第九幕。",
+    "evaluation": "完整 Evaluation 属于第九幕。",
+    "cost_summary": "成本治理不属于第八幕。"
+  }
+}

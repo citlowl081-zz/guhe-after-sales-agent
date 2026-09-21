@@ -1,0 +1,49 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-32-session-memory",
+    "number": 32,
+    "title": "用户问“刚才那个订单”，但不是每句话都值得记｜Session Memory",
+    "summary": "当前版本加入 Session Memory，只保存最近订单、最近商品、最近意图和低风险偏好；Step 31 的 HITL Resume 继续保留，记忆不能覆盖审批边界。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-32-session-memory"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "tool_calls": true,
+    "tool_observation": true,
+    "workflow": true,
+    "human_approval": true,
+    "chat_resume": true,
+    "memory": true,
+    "session_memory": true,
+    "memory_write_policy": true,
+    "memory_exclusion": true,
+    "context_builder": false,
+    "context_compression": false,
+    "prompt_injection_defense": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "context_builder": "上下文来源编排和冲突处理在 Step 34 展开。",
+    "context_compression": "上下文压缩和 Sliding Window 在 Step 35 展开。",
+    "prompt_injection_defense": "外部文本隔离和注入防护在 Step 36 展开。",
+    "trace": "完整 Trace 属于第九幕。",
+    "evaluation": "完整 Evaluation 属于第九幕。",
+    "cost_summary": "成本治理不属于第八幕。"
+  }
+}

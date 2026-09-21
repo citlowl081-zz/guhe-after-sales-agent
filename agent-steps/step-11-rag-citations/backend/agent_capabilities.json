@@ -1,0 +1,47 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-11-rag-citations",
+    "number": 11,
+    "title": "老板终于看到回答来源｜RAG Citations",
+    "summary": "当前版本让 RAG 命中片段以 citations 返回，调试后台可以展示知识来源和依据片段。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-11-rag-citations"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "vector_retrieval": true,
+    "rag_citations": true,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": true
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本展示公开 citations，不展示模型 reasoning_content。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。"
+  }
+}

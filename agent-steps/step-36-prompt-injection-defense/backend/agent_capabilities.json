@@ -1,0 +1,51 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-36-prompt-injection-defense",
+    "number": 36,
+    "title": "用户、工具和知识库都可能把脏指令带进来｜Prompt Injection 防护",
+    "summary": "当前版本保留 Workflow/HITL/Resume，并扫描用户、工具和 RAG 外部文本，标记污染、脱敏隐私、隔离脏指令，拒绝泄露系统提示词、工具细节和 hidden reasoning。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-36-prompt-injection-defense"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "memory": false,
+    "session_memory": false,
+    "runtime_context": true,
+    "context_builder": false,
+    "context_compression": false,
+    "workflow": true,
+    "human_approval": true,
+    "chat_resume": true,
+    "prompt_injection_defense": true,
+    "taint_marking": true,
+    "privacy_redaction": true,
+    "public_safety_summary": true,
+    "reasoning_summary": true,
+    "reasoning_content": true,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "memory": "Step 36 的可观察重点切到安全上下文，不再暴露 Step 32 的 Session Memory 面板。",
+    "session_memory": "当前响应不返回 session_state.memory，避免调试台误判为 Memory 项目。",
+    "context_builder": "Step 36 不返回 context_report，Context Builder 的完整可观察面停留在 Step 34。",
+    "context_compression": "Step 36 不返回 compression_report，压缩窗口的完整可观察面停留在 Step 35。",
+    "trace": "完整 Trace 属于第九幕。",
+    "evaluation": "完整 Evaluation 属于第九幕。",
+    "cost_summary": "成本治理不属于第八幕。"
+  }
+}

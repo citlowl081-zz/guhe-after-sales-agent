@@ -1,0 +1,49 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-37-trace-observability",
+    "number": 37,
+    "title": "老板问：它为什么这么回答？你不能只说“大模型觉得”｜Trace 可观测",
+    "summary": "当前版本保留 Workflow/HITL/Resume，并把 Runtime Context、Context、Tool、RAG、Workflow/HITL、Hooks 和 Cost 记录为公开 trace_event_v1 事件，帮助复盘一次回答为什么发生。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-37-trace-observability"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": true,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "memory": false,
+    "session_memory": false,
+    "runtime_context": true,
+    "context_builder": false,
+    "context_compression": false,
+    "prompt_injection_defense": true,
+    "workflow": true,
+    "human_approval": true,
+    "chat_resume": true,
+    "trace": true,
+    "public_trace_schema": true,
+    "hidden_cot_protection": true,
+    "evaluation": false,
+    "failure_attribution": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "memory": "Step 37 聚焦公开 Trace，不再暴露 Step 32 的 Session Memory 面板。",
+    "session_memory": "当前响应不返回 session_state.memory，避免调试台误判为 Memory 项目。",
+    "context_builder": "Trace 只记录 context_built 事件摘要，不返回 Step 34 的 context_report。",
+    "context_compression": "Trace 只记录公开执行摘要，不返回 Step 35 的 compression_report。",
+    "evaluation": "Evaluation 回归评测属于 Step 38。",
+    "failure_attribution": "失败归因与反馈闭环属于 Step 39。",
+    "cost_summary": "成本治理属于 Step 40。"
+  }
+}

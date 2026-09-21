@@ -1,0 +1,48 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-06-prompt-registry",
+    "number": 6,
+    "title": "Prompt 越写越像一堵墙，改一处就怕塌一片｜Prompt 模板与注册表",
+    "summary": "当前版本把 Prompt 拆成可选择、可排序、可关闭的片段，避免整面 Prompt 墙继续膨胀。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-06-prompt-registry"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "reasoning_content": false,
+    "structured_intent": true,
+    "rag_citations": false,
+    "tool_calls": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "reasoning_content": "当前版本只展示公开执行摘要，不展示模型 reasoning_content。",
+    "rag_citations": "这一版只是 Prompt Registry，不做检索和 citations。",
+    "tool_calls": "业务工具还没有接入。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "Evaluation 回归评测还没有接入。",
+    "cost_summary": "本步先整理 Prompt 模板，还没有做成本响应字段。"
+  }
+}

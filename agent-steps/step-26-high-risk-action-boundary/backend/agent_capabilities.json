@@ -1,0 +1,52 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-26-high-risk-action-boundary",
+    "number": 26,
+    "title": "用户一句“直接给我退”，退款不是一句话｜高风险动作边界",
+    "summary": "当前版本只做高风险售后资格判断和边界解释，必须同时读取真实订单、物流和售后政策依据，不执行退款、取消或补偿。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-26-high-risk-action-boundary"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_observation": true,
+    "citations": true,
+    "risk_level": true,
+    "needs_human_approval": true,
+    "high_risk_action_boundary": true,
+    "after_sale_assessment": true,
+    "workflow": false,
+    "human_approval": false,
+    "chat_resume": false,
+    "checkpoint": false,
+    "idempotency": false,
+    "memory": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "workflow": "当前只判断高风险动作边界，还没有把售后流程固定成 LangGraph 工作流。",
+    "human_approval": "当前只标记需要人工审批，不生成审批单。",
+    "chat_resume": "恢复协议要到 Step 31 才出现。",
+    "checkpoint": "当前没有可恢复 workflow checkpoint。",
+    "idempotency": "当前不提交业务申请，因此不生成幂等键。"
+  }
+}

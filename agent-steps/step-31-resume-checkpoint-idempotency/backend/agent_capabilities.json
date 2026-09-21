@@ -1,0 +1,57 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-31-resume-checkpoint-idempotency",
+    "number": 31,
+    "title": "审批恢复不能乱接，更不能重复提交｜Resume、Checkpoint 与幂等",
+    "summary": "当前版本基于真实订单事实开放 /chat/resume，用 workflow_id、resume_token、checkpoint、冻结字段复核和幂等键保护人工审批恢复。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-31-resume-checkpoint-idempotency"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "structured_intent": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_observation": true,
+    "citations": true,
+    "risk_level": true,
+    "needs_human_approval": true,
+    "high_risk_action_boundary": true,
+    "after_sale_assessment": true,
+    "workflow": true,
+    "langgraph_stategraph": true,
+    "unshipped_refund_workflow": true,
+    "received_return_workflow": true,
+    "human_approval": true,
+    "hitl_pending_approval": true,
+    "chat_resume": true,
+    "checkpoint": true,
+    "frozen_fields": true,
+    "business_fact_recheck": true,
+    "idempotency": true,
+    "memory": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "memory": "多轮记忆和上下文污染要到第八幕再处理。",
+    "trace": "当前只返回公开 workflow 和恢复结果，不开放完整 Trace 查询接口。",
+    "evaluation": "当前没有完整 Evaluation 平台。",
+    "cost_summary": "成本治理不属于第七幕。"
+  }
+}

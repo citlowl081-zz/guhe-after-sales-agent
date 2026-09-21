@@ -1,0 +1,51 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-39-failure-attribution-feedback",
+    "number": 39,
+    "title": "失败了先别乱改，用户差评也不是白挨骂｜失败归因与反馈闭环",
+    "summary": "当前版本保留 Workflow/HITL/Resume，把用户反馈绑定到 trace/eval 证据，归因到 Prompt、RAG、Tool、Context、Workflow 或测试期望，并把事故回填成新的 eval case。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-39-failure-attribution-feedback"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": true,
+    "trace": true,
+    "eval_run": true
+  },
+  "features": {
+    "chat": true,
+    "memory": false,
+    "session_memory": false,
+    "runtime_context": true,
+    "context_builder": false,
+    "context_compression": false,
+    "prompt_injection_defense": true,
+    "workflow": true,
+    "human_approval": true,
+    "chat_resume": true,
+    "trace": true,
+    "public_trace_schema": true,
+    "hidden_cot_protection": true,
+    "evaluation": true,
+    "eval_report": true,
+    "fixed_cases": true,
+    "feedback_submit": true,
+    "failure_attribution": true,
+    "eval_case_backfill": true,
+    "cost_summary": false,
+    "real_llm_answer": true,
+    "grounded_model_answer": true
+  },
+  "disabled_reasons": {
+    "memory": "Step 39 聚焦反馈归因，不再暴露 Step 32 的 Session Memory 面板。",
+    "session_memory": "当前响应不返回 session_state.memory，避免调试台误判为 Memory 项目。",
+    "context_builder": "失败归因只把 Context 作为归因类别，不返回 Step 34 的 context_report。",
+    "context_compression": "失败归因只把 Context 作为归因类别，不返回 Step 35 的 compression_report。",
+    "cost_summary": "成本治理属于 Step 40。"
+  }
+}

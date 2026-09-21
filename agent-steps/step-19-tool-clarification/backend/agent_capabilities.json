@@ -1,0 +1,53 @@
+{
+  "schema_version": "agent_capabilities_v1",
+  "step": {
+    "id": "step-19-tool-clarification",
+    "number": 19,
+    "title": "用户没说订单号，AI 别装懂｜澄清机制",
+    "summary": "当前版本先让 LLM 输出澄清规划，再由后端按 ToolSpec 和当前用户事实校验；工具结果可用时，最终回复由真实大模型基于 Observation 生成。"
+  },
+  "agent": {
+    "name": "古河商城客服 Agent",
+    "version": "step-19-tool-clarification"
+  },
+  "endpoints": {
+    "health": true,
+    "chat": true,
+    "chat_resume": false,
+    "trace": false,
+    "eval_run": false
+  },
+  "features": {
+    "chat": true,
+    "runtime_context": true,
+    "reasoning_summary": true,
+    "real_llm_answer": true,
+    "grounded_model_answer": true,
+    "structured_intent": true,
+    "rag_citations": true,
+    "rag_index_cache": true,
+    "realtime_business_facts": true,
+    "tool_calls": true,
+    "tool_schema": true,
+    "tool_clarification": true,
+    "tool_observation": false,
+    "degradation": false,
+    "workflow": false,
+    "human_approval": false,
+    "memory": false,
+    "hooks": false,
+    "trace": false,
+    "evaluation": false,
+    "cost_summary": false
+  },
+  "disabled_reasons": {
+    "tool_observation": "当前还没有压缩 ToolResult，也没有 next_action。",
+    "degradation": "工具错误分类和降级在 Step 21 出现。",
+    "workflow": "售后工作流还没有接入。",
+    "human_approval": "HITL 人工确认还没有接入。",
+    "memory": "多轮记忆还没有接入。",
+    "hooks": "Hooks 治理还没有接入。",
+    "trace": "Trace 公开轨迹还没有接入。",
+    "evaluation": "当前没有完整 Evaluation 平台。"
+  }
+}
