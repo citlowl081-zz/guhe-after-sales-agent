@@ -51,15 +51,15 @@
 
 未发货退款路径会停在 `require_approval`，并把 `resume_token`、`langgraph_after_sale_workflow` 和请求级成本摘要放在观察台里：
 
-> 截图待补充：Step 41 HITL 与成本摘要（`screenshots/hitl-cost-boundary.png`，待本机运行后截图）
+![Step 41 HITL 与成本摘要](screenshots/hitl-cost-boundary.png)
 
 `/eval/run` 会同时检查答案、Tool、RAG citation、Trace、session_state 和 HITL 恢复边界。本次总演习 15 个 case 全部通过：原有 9 条大促主线保持不变，新增 6 条用于防止否定退款误路由、商品联合回答、退款进度、已发货退款、签收后退货和 FAQ 知识选择能力倒退。
 
-> 截图待补充：Step 41 Evaluation 汇总（`screenshots/eval-summary.png`，待本机运行后截图）
+![Step 41 Evaluation 汇总](screenshots/eval-summary.png)
 
 评测维度里重点看失败数是否为 0，以及物流、RAG、售后审批、恢复令牌、幂等恢复、降级和安全注入这些核心场景是否被覆盖：
 
-> 截图待补充：Step 41 Evaluation 维度与覆盖（`screenshots/eval-dimensions.png`，待本机运行后截图）
+![Step 41 Evaluation 维度与覆盖](screenshots/eval-dimensions.png)
 
 ## 当前边界
 
