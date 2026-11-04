@@ -1,0 +1,1368 @@
+{
+  "embedder": "openai_compatible_embedding:BAAI/bge-m3",
+  "chunk_count": 5,
+  "top_k": 4,
+  "retrieval_n": 157,
+  "vector_recall_at_4": "157/157",
+  "vector_top_exact": "156/157",
+  "current_recall": "98/157",
+  "current_exact": "95/157",
+  "abstain_n": 244,
+  "vector_false_cite": "244/244",
+  "current_false_cite": "23/244",
+  "abstain_by_category": [
+    {
+      "category": "abstain",
+      "n": 24,
+      "current_false_cite": "3/24",
+      "vector_false_cite": "24/24"
+    },
+    {
+      "category": "logistics_faq",
+      "n": 29,
+      "current_false_cite": "1/29",
+      "vector_false_cite": "29/29"
+    },
+    {
+      "category": "address_faq",
+      "n": 14,
+      "current_false_cite": "0/14",
+      "vector_false_cite": "14/14"
+    },
+    {
+      "category": "exchange_faq",
+      "n": 23,
+      "current_false_cite": "0/23",
+      "vector_false_cite": "23/23"
+    },
+    {
+      "category": "payment_faq",
+      "n": 21,
+      "current_false_cite": "0/21",
+      "vector_false_cite": "21/21"
+    },
+    {
+      "category": "coupon_gap",
+      "n": 25,
+      "current_false_cite": "2/25",
+      "vector_false_cite": "25/25"
+    },
+    {
+      "category": "invoice_gap",
+      "n": 21,
+      "current_false_cite": "13/21",
+      "vector_false_cite": "21/21"
+    },
+    {
+      "category": "member_gap",
+      "n": 13,
+      "current_false_cite": "0/13",
+      "vector_false_cite": "13/13"
+    },
+    {
+      "category": "price_faq",
+      "n": 9,
+      "current_false_cite": "1/9",
+      "vector_false_cite": "9/9"
+    },
+    {
+      "category": "account_faq",
+      "n": 10,
+      "current_false_cite": "0/10",
+      "vector_false_cite": "10/10"
+    },
+    {
+      "category": "service_faq",
+      "n": 17,
+      "current_false_cite": "0/17",
+      "vector_false_cite": "17/17"
+    },
+    {
+      "category": "special_goods_faq",
+      "n": 16,
+      "current_false_cite": "0/16",
+      "vector_false_cite": "16/16"
+    },
+    {
+      "category": "marketing_faq",
+      "n": 8,
+      "current_false_cite": "1/8",
+      "vector_false_cite": "8/8"
+    },
+    {
+      "category": "compliance_faq",
+      "n": 7,
+      "current_false_cite": "1/7",
+      "vector_false_cite": "7/7"
+    },
+    {
+      "category": "merchant_faq",
+      "n": 7,
+      "current_false_cite": "1/7",
+      "vector_false_cite": "7/7"
+    }
+  ],
+  "workflow_n": 112,
+  "workflow_intent_match": "108/112",
+  "by_category": [
+    {
+      "category": "keyword",
+      "n": 61,
+      "vector_recall_at_4": "61/61",
+      "vector_top_exact": "60/61",
+      "current_recall": "54/61",
+      "current_exact": "53/61"
+    },
+    {
+      "category": "keyword_pair",
+      "n": 16,
+      "vector_recall_at_4": "16/16",
+      "vector_top_exact": "16/16",
+      "current_recall": "16/16",
+      "current_exact": "16/16"
+    },
+    {
+      "category": "paraphrase",
+      "n": 50,
+      "vector_recall_at_4": "50/50",
+      "vector_top_exact": "50/50",
+      "current_recall": "12/50",
+      "current_exact": "12/50"
+    },
+    {
+      "category": "oral",
+      "n": 16,
+      "vector_recall_at_4": "16/16",
+      "vector_top_exact": "16/16",
+      "current_recall": "9/16",
+      "current_exact": "9/16"
+    },
+    {
+      "category": "trap",
+      "n": 14,
+      "vector_recall_at_4": "14/14",
+      "vector_top_exact": "14/14",
+      "current_recall": "7/14",
+      "current_exact": "5/14"
+    }
+  ],
+  "retrieval_misses": [
+    {
+      "id": "kw-promo-05",
+      "category": "keyword",
+      "query": "大促满减可以重复叠加同类型券吗？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "promotion_query",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "invoice_title_update",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "kw-invoice-04",
+      "category": "keyword",
+      "query": "发票通常多久能开好？先不管抬头。",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "faq_query",
+      "vector": [
+        "invoice_title_update",
+        "invoice_issue",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "para-promo-03",
+      "category": "paraphrase",
+      "query": "促销减价能不能跟手里的券一起算？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "invoice_title_update",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-promo-05",
+      "category": "paraphrase",
+      "query": "店庆少收的那四十块，能不能用两遍？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-promo-06",
+      "category": "paraphrase",
+      "query": "页面上写着满三百减四十，这条规矩到底怎么用？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "invoice_title_update",
+        "member_coupon_gold_rule",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-01",
+      "category": "paraphrase",
+      "query": "我这张卡送的券能不能借给别人下单？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-02",
+      "category": "paraphrase",
+      "query": "金色会员拿到的那张券必须自己用吗？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-03",
+      "category": "paraphrase",
+      "query": "会员权益里的券过了日子还能不能用？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-04",
+      "category": "paraphrase",
+      "query": "等级高一点的会员，送的券能不能给家人用？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-05",
+      "category": "paraphrase",
+      "query": "卡里自动领到的券，过期了还能核销吗？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_issue"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-invoice-01",
+      "category": "paraphrase",
+      "query": "买完东西之后购物凭证大概多久能下来？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_issue",
+        "refund_before_shipping",
+        "member_coupon_gold_rule",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-invoice-02",
+      "category": "paraphrase",
+      "query": "电子票据一般一天内能查到吗？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-invoice-03",
+      "category": "paraphrase",
+      "query": "付款之后多久能下载报销凭证？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_issue",
+        "refund_before_shipping",
+        "invoice_title_update",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-invoice-04",
+      "category": "paraphrase",
+      "query": "购物小票的电子版，什么时候能在页面里保存？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "member_coupon_gold_rule",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-01",
+      "category": "paraphrase",
+      "query": "报销用的公司名字填错了，凭证还没出来能不能改？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "refund_before_shipping",
+        "invoice_issue",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-02",
+      "category": "paraphrase",
+      "query": "抬头写错了但还没开出来，能自己改吗？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "refund_before_shipping",
+        "invoice_issue",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-03",
+      "category": "paraphrase",
+      "query": "已经开出来的票据名字写错了找谁？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "invoice_issue",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-04",
+      "category": "paraphrase",
+      "query": "公司名称写错了，单据还在草稿，我自己能改吗？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "refund_before_shipping",
+        "invoice_issue",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-05",
+      "category": "paraphrase",
+      "query": "票据已经生成了，抬头要换成公司的，还用找人工吗？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "invoice_issue",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-refund-01",
+      "category": "paraphrase",
+      "query": "钱已经付了但货还在仓库，申请把钱退回来要不要等人点头？",
+      "expected": [
+        "refund_before_shipping"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "refund_before_shipping",
+        "invoice_title_update",
+        "invoice_issue",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "oral-02",
+      "category": "oral",
+      "query": "618叠券可以吗？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "oral-03",
+      "category": "oral",
+      "query": "金卡优惠卷能不能转让？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "oral-05",
+      "category": "oral",
+      "query": "开票后一天能下载吗？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "oral-06",
+      "category": "oral",
+      "query": "我想改一下开票抬头。",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "invoice_issue",
+        "refund_before_shipping",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "oral-07",
+      "category": "oral",
+      "query": "优惠卷过期了还能用吗？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "oral-09",
+      "category": "oral",
+      "query": "满三百减四十能不能和金卡的卷一起用？",
+      "expected": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "invoice_title_update",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "trap-01",
+      "category": "trap",
+      "query": "订单完成后电子发票多久能下载？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "trap-02",
+      "category": "trap",
+      "query": "大促期间满减规则怎么叠加？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "promotion_query",
+      "vector": [
+        "promotion_618_stack_rule",
+        "invoice_title_update",
+        "member_coupon_gold_rule",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "trap-03",
+      "category": "trap",
+      "query": "快递发票什么时候开？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "trap-04",
+      "category": "trap",
+      "query": "物流里的电子发票抬头错了怎么办？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_title_update",
+        "invoice_issue",
+        "refund_before_shipping",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "trap-05",
+      "category": "trap",
+      "query": "只问满减，不要把会员券规则也算进来。618 满减怎么用？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "promotion_query",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule"
+      ]
+    },
+    {
+      "id": "kw-invoice-06",
+      "category": "keyword",
+      "query": "电子发票在订单详情页哪里下载？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-promo-07",
+      "category": "paraphrase",
+      "query": "页面写满三百少四十，同样的优惠能用两次吗？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-06",
+      "category": "paraphrase",
+      "query": "高等级会员领到的券，能不能转到家人账号？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "invoice_title_update",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-07",
+      "category": "paraphrase",
+      "query": "这张会员送的券，过了有效期还能核销吗？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-invoice-05",
+      "category": "paraphrase",
+      "query": "买完之后电子报销单大概一天内能下载吗？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-06",
+      "category": "paraphrase",
+      "query": "报销抬头写错了，单子还没开出来，我能自己改吗？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "refund_before_shipping",
+        "invoice_issue",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-07",
+      "category": "paraphrase",
+      "query": "票据已经开出，公司名字错了，还要联系人工客服吗？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "refund_before_shipping",
+        "invoice_issue",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "kw-promo-11",
+      "category": "keyword",
+      "query": "会员券规则先别提，618 满减本身怎么规定？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "promotion_query",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule"
+      ]
+    },
+    {
+      "id": "kw-invoice-08",
+      "category": "keyword",
+      "query": "发票下载入口是不是在订单详情页？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-promo-09",
+      "category": "paraphrase",
+      "query": "满三百少四十，同样优惠能不能再用一次？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-promo-11",
+      "category": "paraphrase",
+      "query": "购物车里两张一样的减价券，能叠在一起吗？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "invoice_title_update",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-08",
+      "category": "paraphrase",
+      "query": "金卡送的那张券，家人帮我下单时能用吗？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-09",
+      "category": "paraphrase",
+      "query": "高等级会员的券，过了日子系统还认吗？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_issue"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-invoice-06",
+      "category": "paraphrase",
+      "query": "电子报销单是不是一天之内能在详情里下载？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-invoice-07",
+      "category": "paraphrase",
+      "query": "买完后多久能看到电子票据？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-08",
+      "category": "paraphrase",
+      "query": "还没开票，抬头公司名写错了，页面上能改吗？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "refund_before_shipping",
+        "invoice_issue",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-09",
+      "category": "paraphrase",
+      "query": "票已经出了，抬头要改，是不是得找人工？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "refund_before_shipping",
+        "invoice_issue",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-pair-06",
+      "category": "paraphrase",
+      "query": "会员手里的券，能不能和满三百减四十一起用？",
+      "expected": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "invoice_title_update",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "oral-12",
+      "category": "oral",
+      "query": "金卡那张优惠卷能转给别人吗？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "trap-09",
+      "category": "trap",
+      "query": "订单详情里的电子发票什么时候能下载？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "trap-10",
+      "category": "trap",
+      "query": "快递单上的发票抬头错了怎么改？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_title_update",
+        "invoice_issue",
+        "refund_before_shipping",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "trap-11",
+      "category": "trap",
+      "query": "只说叠加，不提会员券，大促满减还成立吗？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "promotion_query",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule"
+      ]
+    },
+    {
+      "id": "trap-14",
+      "category": "trap",
+      "query": "物流页面里提示电子发票已开具，抬头还能自己改吗？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_title_update",
+        "invoice_issue",
+        "refund_before_shipping",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-10",
+      "category": "paraphrase",
+      "query": "报销公司名写错且还没出票，能自己改抬头吗？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "refund_before_shipping",
+        "promotion_618_stack_rule",
+        "invoice_issue"
+      ],
+      "current": []
+    },
+    {
+      "id": "kw-promo-13",
+      "category": "keyword",
+      "query": "618 大促里同类型满减券可以叠加使用吗？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "promotion_query",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "invoice_title_update",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "kw-invoice-11",
+      "category": "keyword",
+      "query": "电子发票是不是订单完成后一天内能开？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "kw-invoice-12",
+      "category": "keyword",
+      "query": "电子发票下载是不是在订单详情页？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "order_query",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "refund_before_shipping",
+        "member_coupon_gold_rule"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-promo-13",
+      "category": "paraphrase",
+      "query": "满三百减四十这条，同样的券能用两次吗？",
+      "expected": [
+        "promotion_618_stack_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "promotion_618_stack_rule",
+        "member_coupon_gold_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-member-10",
+      "category": "paraphrase",
+      "query": "金卡领到的券，能不能放到别人的账号里用？",
+      "expected": [
+        "member_coupon_gold_rule"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "member_coupon_gold_rule",
+        "promotion_618_stack_rule",
+        "refund_before_shipping",
+        "invoice_title_update"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-invoice-08",
+      "category": "paraphrase",
+      "query": "电子票据一天内能在详情页下载吗？",
+      "expected": [
+        "invoice_issue"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_issue",
+        "invoice_title_update",
+        "member_coupon_gold_rule",
+        "refund_before_shipping"
+      ],
+      "current": []
+    },
+    {
+      "id": "para-title-11",
+      "category": "paraphrase",
+      "query": "还没出票，抬头写错了能自己改吗？",
+      "expected": [
+        "invoice_title_update"
+      ],
+      "intent": "general_chat",
+      "vector": [
+        "invoice_title_update",
+        "refund_before_shipping",
+        "invoice_issue",
+        "promotion_618_stack_rule"
+      ],
+      "current": []
+    }
+  ],
+  "abstain_false_cites": [
+    {
+      "id": "out-16",
+      "query": "竞品店的满减怎么算？",
+      "intent": "promotion_query",
+      "current": [
+        "promotion_618_stack_rule"
+      ]
+    },
+    {
+      "id": "out-17",
+      "query": "别的平台 618 满减是多少？",
+      "intent": "promotion_query",
+      "current": [
+        "promotion_618_stack_rule"
+      ]
+    },
+    {
+      "id": "out-21",
+      "query": "门店自提能开发票吗？先别按网店规则答。",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "ship-13",
+      "query": "大促期间发货会延迟吗？",
+      "intent": "promotion_query",
+      "current": [
+        "promotion_618_stack_rule"
+      ]
+    },
+    {
+      "id": "coupon-trap-03",
+      "query": "秒杀商品参加 618 满减吗？",
+      "intent": "product_query",
+      "current": [
+        "promotion_618_stack_rule"
+      ]
+    },
+    {
+      "id": "coupon-trap-04",
+      "query": "包邮券和会员券能一起用吗？",
+      "intent": "promotion_query",
+      "current": [
+        "member_coupon_gold_rule"
+      ]
+    },
+    {
+      "id": "inv-gap-01",
+      "query": "能开增值税专用发票吗？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "inv-gap-02",
+      "query": "纸质发票怎么邮寄？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_issue"
+      ]
+    },
+    {
+      "id": "inv-gap-04",
+      "query": "发票内容可以开成办公用品吗？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "inv-gap-06",
+      "query": "发票金额包含运费吗？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_issue"
+      ]
+    },
+    {
+      "id": "inv-gap-09",
+      "query": "发票丢了能补开吗？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "inv-gap-10",
+      "query": "月结发票怎么申请？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "inv-gap-11",
+      "query": "门店自提能开发票吗？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "price-05",
+      "query": "凑单满减是按付款金额还是按标价？",
+      "intent": "promotion_query",
+      "current": [
+        "promotion_618_stack_rule"
+      ]
+    },
+    {
+      "id": "inv-gap-14",
+      "query": "发票备注栏能写合同号吗？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "inv-gap-15",
+      "query": "跨月还能换开发票吗？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "inv-gap-17",
+      "query": "发票税率显示不对找谁？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "mkt-01",
+      "query": "抽奖活动中奖后多久发货？",
+      "intent": "promotion_query",
+      "current": [
+        "promotion_618_stack_rule"
+      ]
+    },
+    {
+      "id": "safe-05",
+      "query": "未成年人消费如何申诉退款？",
+      "intent": "refund_request",
+      "current": [
+        "refund_before_shipping"
+      ]
+    },
+    {
+      "id": "cs-02",
+      "query": "协商部分退款商家不同意怎么办？",
+      "intent": "refund_request",
+      "current": [
+        "refund_before_shipping"
+      ]
+    },
+    {
+      "id": "inv-gap-19",
+      "query": "发票开成明细还是开成大类？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "inv-gap-20",
+      "query": "发票购方地址电话必须填吗？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    },
+    {
+      "id": "inv-gap-21",
+      "query": "红字发票什么情况下才开？",
+      "intent": "faq_query",
+      "current": [
+        "invoice_title_update"
+      ]
+    }
+  ],
+  "workflow_misses": [
+    {
+      "id": "wf-05",
+      "query": "不用审批也要退款，SO20260601090000008-a1000008",
+      "expected_intent": "refund_request",
+      "actual_intent": "general_chat"
+    },
+    {
+      "id": "wf-13",
+      "query": "不用审批，马上把 SO20260601090000008-a1000008 的钱退给我",
+      "expected_intent": "refund_request",
+      "actual_intent": "general_chat"
+    },
+    {
+      "id": "wf-31",
+      "query": "我想把 SO20260601090000008-a1000008 的收货电话改一下",
+      "expected_intent": "order_query",
+      "actual_intent": "general_chat"
+    },
+    {
+      "id": "wf-90",
+      "query": "SO20260601090000008-a1000008 发货了吗",
+      "expected_intent": "order_query",
+      "actual_intent": "general_chat"
+    }
+  ]
+}

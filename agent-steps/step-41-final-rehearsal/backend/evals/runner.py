@@ -48,17 +48,50 @@ class EvalRunner:
         run_id = uuid4().hex[:8]
         for case in selected:
             session_id = f"eval-{case['case_id']}-{run_id}"
-            actual = self._run_case(case, session_id)
-            # 结构化公开信号继续精确匹配；最终客服话术允许不改变事实的等价改写，
-            # 因此交给 expected_answer_claims 做受控校验，避免因字词增减而误判为回归失败。
+            try:
+                actual = self._run_case(case, session_id)
+            except Exception as exc:
+                results.append(
+                    EvalCaseResult(
+                        case_id=case["case_id"],
+                        passed=False,
+                        user_message=case.get("user_message", case.get("start_user_message", case["case_id"])),
+                        expected_signals=[],
+                        actual_answer=f"{exc.__class__.__name__}: {exc}",
+                        actual_tools=[],
+                        missing_signals=[f"{exc.__class__.__name__}: {exc}"],
+                        failure_categories=["case_execution_error"],
+                    )
+                )
+                log_guhe_event(
+                    "EVAL_CASE",
+                    "Evaluation Case 执行异常",
+                    case_id=case["case_id"],
+                    passed=False,
+                    failure_categories=["case_execution_error"],
+                    error_type=exc.__class__.__name__,
+                )
+                continue
+            # 模型可以改写客服话术。订单、价格和库存看工具摘要，政策原文看引用片段，
+            # 流程结论看 trace 与 session_state。话术只保留安全边界上的正反断言。
             missing_signals = [signal for signal in case.get("expected_signals", []) if signal not in actual["text"]]
             missing_signals.extend(
                 self._missing_answer_claims(actual["answer"], case.get("expected_answer_claims", []))
             )
             missing_tools = [tool for tool in case.get("expected_tools", []) if tool not in actual["tools"]]
             unexpected_tools = [tool for tool in case.get("forbidden_tools", []) if tool in actual["tools"]]
+            missing_tool_outputs = [
+                item
+                for item in case.get("expected_tool_outputs", [])
+                if not self._contains_any(actual["tool_outputs"], item)
+            ]
             missing_citations = [
                 item for item in case.get("expected_citations", []) if not self._contains_any(actual["citations"], item)
+            ]
+            missing_citation_snippets = [
+                item
+                for item in case.get("expected_citation_snippets", [])
+                if not self._contains_any(actual["citation_snippets"], item)
             ]
             forbidden_citation_hits = [
                 item for item in case.get("forbidden_citations", []) if self._contains_any(actual["citations"], item)
@@ -79,7 +112,9 @@ class EvalRunner:
                 missing_signals=missing_signals,
                 missing_tools=missing_tools,
                 unexpected_tools=unexpected_tools,
+                missing_tool_outputs=missing_tool_outputs,
                 missing_citations=missing_citations,
+                missing_citation_snippets=missing_citation_snippets,
                 forbidden_citation_hits=forbidden_citation_hits,
                 missing_trace_events=missing_trace_events,
                 missing_session_state=missing_session_state,
@@ -98,7 +133,9 @@ class EvalRunner:
                     actual_trace_events=actual["trace_events"],
                     missing_tools=missing_tools,
                     unexpected_tools=unexpected_tools,
+                    missing_tool_outputs=missing_tool_outputs,
                     missing_citations=missing_citations,
+                    missing_citation_snippets=missing_citation_snippets,
                     forbidden_citation_hits=forbidden_citation_hits,
                     missing_trace_events=missing_trace_events,
                     missing_session_state=missing_session_state,
@@ -120,6 +157,8 @@ class EvalRunner:
         """按 case 类型运行聊天或 HITL 恢复，并统一成 Eval 可检查的公开信号。"""
         if case.get("case_type") == "resume":
             return self._run_resume_case(case, session_id)
+        if case.get("case_type") == "dialogue":
+            return self._run_dialogue_case(case, session_id)
         return self._run_chat_case(case, session_id)
 
     def _run_chat_case(self, case: dict[str, Any], session_id: str) -> dict[str, Any]:
@@ -133,11 +172,41 @@ class EvalRunner:
                 runtime_risk_level=case.get("runtime_risk_level"),
                 user_message=case["user_message"],
                 runtime_context=case.get("runtime_context"),
+                history_messages=self._history_messages(case),
             )
         )
+        return self._actual_from_chat(response, session_id)
+
+    def _run_dialogue_case(self, case: dict[str, Any], session_id: str) -> dict[str, Any]:
+        """同一会话连续发送多轮消息，用最后一轮的公开信号和全程 Trace 做断言。"""
+        response: ChatResponse | None = None
+        for turn in case.get("turns") or []:
+            response = self.agent.chat(
+                ChatRequest(
+                    session_id=session_id,
+                    runtime_user_id=turn.get("runtime_user_id", case.get("runtime_user_id", "U1001")),
+                    runtime_nickname=turn.get("runtime_nickname", case.get("runtime_nickname")),
+                    runtime_member_level=turn.get("runtime_member_level", case.get("runtime_member_level")),
+                    runtime_risk_level=turn.get("runtime_risk_level", case.get("runtime_risk_level")),
+                    user_message=turn["user_message"],
+                    runtime_context=turn.get("runtime_context", case.get("runtime_context")),
+                    history_messages=self._history_messages(turn if turn.get("history_messages") else case),
+                )
+            )
+        if response is None:
+            raise ValueError("dialogue case 缺少 turns")
+        return self._actual_from_chat(response, session_id)
+
+    @staticmethod
+    def _history_messages(case: dict[str, Any]) -> list[HistoryMessage]:
+        return [HistoryMessage.model_validate(item) for item in case.get("history_messages") or []]
+
+    def _actual_from_chat(self, response: ChatResponse, session_id: str) -> dict[str, Any]:
         trace_events = trace_store.list(session_id)
         actual_tools = [call.tool_name for call in response.tool_calls]
+        actual_tool_outputs = self._tool_output_signals(response.tool_calls)
         actual_citations = self._citation_signals(response.citations)
+        actual_citation_snippets = self._citation_snippets(response.citations)
         actual_trace_events = [event.event_type for event in trace_events]
         actual_text = " ".join(
             [response.answer]
@@ -150,7 +219,9 @@ class EvalRunner:
         return {
             "answer": response.answer,
             "tools": actual_tools,
+            "tool_outputs": actual_tool_outputs,
             "citations": actual_citations,
+            "citation_snippets": actual_citation_snippets,
             "trace_events": actual_trace_events,
             "session_state": response.session_state,
             "text": actual_text,
@@ -204,6 +275,7 @@ class EvalRunner:
             "resume_status": response.status,
         }
         actual_citations = self._citation_signals(start_response.citations) if start_response else []
+        actual_citation_snippets = self._citation_snippets(start_response.citations) if start_response else []
         actual_text = " ".join(
             [response.answer]
             + actual_citations
@@ -215,7 +287,9 @@ class EvalRunner:
         return {
             "answer": response.answer,
             "tools": [],
+            "tool_outputs": [],
             "citations": actual_citations,
+            "citation_snippets": actual_citation_snippets,
             "trace_events": actual_trace_events,
             "session_state": session_state,
             "text": actual_text,
@@ -230,6 +304,16 @@ class EvalRunner:
             if citation.metadata:
                 signals.extend(str(value) for value in citation.metadata.values())
         return [signal for signal in signals if signal]
+
+    @staticmethod
+    def _tool_output_signals(tool_calls: list[ToolCallTrace]) -> list[str]:
+        """只取工具自己的事实摘要，不取模型改写后的客服话术。"""
+        return [call.output_summary for call in tool_calls if call.output_summary]
+
+    @staticmethod
+    def _citation_snippets(citations: list[Citation]) -> list[str]:
+        """只取引用原文，避免用模型复述来判断政策有没有检索到。"""
+        return [citation.snippet for citation in citations if citation.snippet]
 
     @classmethod
     def _flatten_values(cls, value: Any) -> list[str]:
@@ -307,7 +391,9 @@ class EvalRunner:
         missing_signals: list[str],
         missing_tools: list[str],
         unexpected_tools: list[str],
+        missing_tool_outputs: list[str],
         missing_citations: list[str],
+        missing_citation_snippets: list[str],
         forbidden_citation_hits: list[str],
         missing_trace_events: list[str],
         missing_session_state: list[str],
@@ -317,9 +403,9 @@ class EvalRunner:
         categories: list[str] = []
         if missing_signals:
             categories.append("answer_signal_missing")
-        if missing_tools or unexpected_tools:
+        if missing_tools or unexpected_tools or missing_tool_outputs:
             categories.append("tool_path_mismatch")
-        if missing_citations or forbidden_citation_hits:
+        if missing_citations or missing_citation_snippets or forbidden_citation_hits:
             categories.append("citation_missing")
         if missing_trace_events:
             categories.append("trace_event_missing")

@@ -82,10 +82,12 @@ python main.py
 启动后端后，可以用 `/eval/run` 触发本步 15 条大促回归场景：
 
 ```bash
-curl -s -X POST http://127.0.0.1:8000/eval/run
+curl -s -X POST http://127.0.0.1:8000/eval/run \
+  -H 'Content-Type: application/json' \
+  -d '{}'
 ```
 
-返回里的 `passed` 应为 15，`failed` 应为 0。这里检查的是 answer、Tool、RAG citation、Trace、session_state，以及 3 条审批恢复 / resume 场景，不只是最终话术。
+返回里的 `passed` 应为 15，`failed` 应为 0。订单、价格、库存看工具摘要，政策原文看引用片段，流程结论看 Trace 和 session_state。模型改写后的客服话术不再用「满 300 减 40」「当前还不是退货成功」这类字面短语判失败；不得承诺退款或退货已经成功的边界仍然检查话术。审批恢复场景使用固定话术，仍检查原句。
 
 ## 代码仓说明
 

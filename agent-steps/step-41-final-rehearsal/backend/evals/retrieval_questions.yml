@@ -1,0 +1,2000 @@
+# 检索专项题，不进入 /eval/run。
+# expected_policy_ids 是业务上应该引用的政策。
+# 向量索引只有 5 个片段。知识库没写的常见问题在 abstain，引用了算误引用。
+# 动作类问题在 workflow，只核对意图。
+
+retrieval:
+- id: kw-promo-01
+  category: keyword
+  query: 618 大促满减规则是什么？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-promo-02
+  category: keyword
+  query: 满 300 减 40 的活动规则是什么？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-promo-03
+  category: keyword
+  query: 618 满减能不能和同类型满减券一起用？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-promo-04
+  category: keyword
+  query: 这次 618 活动满 300 减 40 的规则是什么？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-promo-05
+  category: keyword
+  query: 大促满减可以重复叠加同类型券吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-promo-06
+  category: keyword
+  query: 618 满减活动不能和同类型满减券重复用，对吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-member-01
+  category: keyword
+  query: 金卡会员券能不能转让？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-member-02
+  category: keyword
+  query: 平台会员券使用规则是什么？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-member-03
+  category: keyword
+  query: 金卡会员券必须本人在有效期内使用吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-member-04
+  category: keyword
+  query: 会员券可以转给其他账号吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-member-05
+  category: keyword
+  query: 金卡能领平台优惠券吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-member-06
+  category: keyword
+  query: 会员规则里的券能转让吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-invoice-01
+  category: keyword
+  query: 电子发票一般是不是24小时内开具？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-invoice-02
+  category: keyword
+  query: 电子发票在哪里查看和下载？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-invoice-03
+  category: keyword
+  query: 电子发票什么时候能下载？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-invoice-04
+  category: keyword
+  query: 发票通常多久能开好？先不管抬头。
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-title-01
+  category: keyword
+  query: 电子发票抬头填错了，开具前还能修改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-title-02
+  category: keyword
+  query: 发票信息里开具前可以改抬头吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-title-03
+  category: keyword
+  query: 已经开具的发票如果要改抬头该怎么办？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-title-04
+  category: keyword
+  query: 电子发票开具前发现抬头错了还能改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-title-05
+  category: keyword
+  query: 发票抬头能改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-refund-01
+  category: keyword
+  query: 已支付还没发货，退款申请要不要审批？
+  expected_policy_ids:
+  - refund_before_shipping
+- id: kw-pair-01
+  category: keyword_pair
+  query: 满 300 减 40 能不能和金卡会员券叠加？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-02
+  category: keyword_pair
+  query: 618 大促满减和金卡会员券能不能叠加？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-03
+  category: keyword_pair
+  query: 满减和会员券能不能一起用？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-04
+  category: keyword_pair
+  query: 活动满减可以叠加会员券吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-05
+  category: keyword_pair
+  query: 618 规则允许满减和会员券一起用吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-06
+  category: keyword_pair
+  query: 大促满减和优惠券能叠加吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-07
+  category: keyword_pair
+  query: 金卡会员券和满 300 减 40 能一起用吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-08
+  category: keyword_pair
+  query: 会员券和 618 满减活动可以同时用吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-promo-01
+  category: paraphrase
+  query: 那个节日大促少收四十块的规矩是什么？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-promo-02
+  category: paraphrase
+  query: 同样的减价活动能不能算两次？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-promo-03
+  category: paraphrase
+  query: 促销减价能不能跟手里的券一起算？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-promo-04
+  category: paraphrase
+  query: 大促的优惠能不能和我卡里的券一起用？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-promo-05
+  category: paraphrase
+  query: 店庆少收的那四十块，能不能用两遍？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-promo-06
+  category: paraphrase
+  query: 页面上写着满三百减四十，这条规矩到底怎么用？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-member-01
+  category: paraphrase
+  query: 我这张卡送的券能不能借给别人下单？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-member-02
+  category: paraphrase
+  query: 金色会员拿到的那张券必须自己用吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-member-03
+  category: paraphrase
+  query: 会员权益里的券过了日子还能不能用？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-member-04
+  category: paraphrase
+  query: 等级高一点的会员，送的券能不能给家人用？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-member-05
+  category: paraphrase
+  query: 卡里自动领到的券，过期了还能核销吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-invoice-01
+  category: paraphrase
+  query: 买完东西之后购物凭证大概多久能下来？
+  expected_policy_ids:
+  - invoice_issue
+- id: para-invoice-02
+  category: paraphrase
+  query: 电子票据一般一天内能查到吗？
+  expected_policy_ids:
+  - invoice_issue
+- id: para-invoice-03
+  category: paraphrase
+  query: 付款之后多久能下载报销凭证？
+  expected_policy_ids:
+  - invoice_issue
+- id: para-invoice-04
+  category: paraphrase
+  query: 购物小票的电子版，什么时候能在页面里保存？
+  expected_policy_ids:
+  - invoice_issue
+- id: para-title-01
+  category: paraphrase
+  query: 报销用的公司名字填错了，凭证还没出来能不能改？
+  expected_policy_ids:
+  - invoice_title_update
+- id: para-title-02
+  category: paraphrase
+  query: 抬头写错了但还没开出来，能自己改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: para-title-03
+  category: paraphrase
+  query: 已经开出来的票据名字写错了找谁？
+  expected_policy_ids:
+  - invoice_title_update
+- id: para-title-04
+  category: paraphrase
+  query: 公司名称写错了，单据还在草稿，我自己能改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: para-title-05
+  category: paraphrase
+  query: 票据已经生成了，抬头要换成公司的，还用找人工吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: para-pair-01
+  category: paraphrase
+  query: 满减和会员手里的券能不能一起算？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-pair-02
+  category: paraphrase
+  query: 活动优惠和金卡的券能否叠加？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-pair-03
+  category: paraphrase
+  query: 少收四十块的活动，能不能和会员卡里的券一起付？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-refund-01
+  category: paraphrase
+  query: 钱已经付了但货还在仓库，申请把钱退回来要不要等人点头？
+  expected_policy_ids:
+  - refund_before_shipping
+- id: oral-01
+  category: oral
+  query: 618大促叠券可以吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: oral-02
+  category: oral
+  query: 618叠券可以吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: oral-03
+  category: oral
+  query: 金卡优惠卷能不能转让？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: oral-04
+  category: oral
+  query: 开票后24小时内能下载电子发票吗？
+  expected_policy_ids:
+  - invoice_issue
+- id: oral-05
+  category: oral
+  query: 开票后一天能下载吗？
+  expected_policy_ids:
+  - invoice_issue
+- id: oral-06
+  category: oral
+  query: 我想改一下开票抬头。
+  expected_policy_ids:
+  - invoice_title_update
+- id: oral-07
+  category: oral
+  query: 优惠卷过期了还能用吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: oral-08
+  category: oral
+  query: 这个大促能不能叠会员的卷？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: oral-09
+  category: oral
+  query: 满三百减四十能不能和金卡的卷一起用？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: oral-10
+  category: oral
+  query: 发票开具前抬头写错了还能不能改？
+  expected_policy_ids:
+  - invoice_title_update
+- id: trap-01
+  category: trap
+  query: 订单完成后电子发票多久能下载？
+  expected_policy_ids:
+  - invoice_issue
+- id: trap-02
+  category: trap
+  query: 大促期间满减规则怎么叠加？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: trap-03
+  category: trap
+  query: 快递发票什么时候开？
+  expected_policy_ids:
+  - invoice_issue
+- id: trap-04
+  category: trap
+  query: 物流里的电子发票抬头错了怎么办？
+  expected_policy_ids:
+  - invoice_title_update
+- id: trap-05
+  category: trap
+  query: 只问满减，不要把会员券规则也算进来。618 满减怎么用？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: trap-06
+  category: trap
+  query: 耳机现在的价格先别说，平台 618 满减的一般规则是什么？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: trap-07
+  category: trap
+  query: 降噪耳机还有库存吗？另外金卡会员券能不能转让？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: trap-08
+  category: trap
+  query: 叠加会员券时，如果不同时提满减，618 这条还算数吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-promo-07
+  category: keyword
+  query: 618 期间满减和同类型满减券能不能各用一张？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-promo-08
+  category: keyword
+  query: 大促满 300 减 40 的门槛怎么算？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-member-07
+  category: keyword
+  query: 金卡会员券过期了还能使用吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-member-08
+  category: keyword
+  query: 会员券可以借给朋友的账号吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-invoice-05
+  category: keyword
+  query: 电子发票完成后大概 24 小时内能开出来吗？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-invoice-06
+  category: keyword
+  query: 电子发票在订单详情页哪里下载？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-title-06
+  category: keyword
+  query: 电子发票还没开具，抬头填错了能改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-title-07
+  category: keyword
+  query: 已经开出来的电子发票，抬头错了是不是要找人工？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-refund-02
+  category: keyword
+  query: 未出库未发货的已支付订单，退款是不是必须审批？
+  expected_policy_ids:
+  - refund_before_shipping
+- id: kw-pair-09
+  category: keyword_pair
+  query: 618 满减活动可以和金卡会员券一起使用吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-10
+  category: keyword_pair
+  query: 平台会员券和大促满 300 减 40 能同时生效吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-promo-07
+  category: paraphrase
+  query: 页面写满三百少四十，同样的优惠能用两次吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-promo-08
+  category: paraphrase
+  query: 节日活动少收的四十块，规则写在哪里？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-member-06
+  category: paraphrase
+  query: 高等级会员领到的券，能不能转到家人账号？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-member-07
+  category: paraphrase
+  query: 这张会员送的券，过了有效期还能核销吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-invoice-05
+  category: paraphrase
+  query: 买完之后电子报销单大概一天内能下载吗？
+  expected_policy_ids:
+  - invoice_issue
+- id: para-title-06
+  category: paraphrase
+  query: 报销抬头写错了，单子还没开出来，我能自己改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: para-title-07
+  category: paraphrase
+  query: 票据已经开出，公司名字错了，还要联系人工客服吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: para-pair-04
+  category: paraphrase
+  query: 少四十的节日活动和会员卡里的券，结账时能一起用吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-promo-09
+  category: keyword
+  query: 618 满 300 减 40 不能和同类型满减券一起用吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-promo-10
+  category: keyword
+  query: 大促活动满减的使用条件是什么？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-promo-11
+  category: keyword
+  query: 会员券规则先别提，618 满减本身怎么规定？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-member-09
+  category: keyword
+  query: 金卡领取的平台会员券能给别人用吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-member-10
+  category: keyword
+  query: 会员券不在有效期内还能用吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-member-11
+  category: keyword
+  query: 平台优惠券是金卡才能领吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-invoice-07
+  category: keyword
+  query: 电子发票是不是完成后一天内开具？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-invoice-08
+  category: keyword
+  query: 发票下载入口是不是在订单详情页？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-title-08
+  category: keyword
+  query: 开具前，电子发票抬头可以在发票信息里改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-title-09
+  category: keyword
+  query: 已开具发票改抬头，是不是必须人工核验？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-refund-03
+  category: keyword
+  query: 已支付、未出库、未发货，可以发起退款申请吗？
+  expected_policy_ids:
+  - refund_before_shipping
+- id: kw-refund-04
+  category: keyword
+  query: 未发货退款的资金动作必须进入审批吗？
+  expected_policy_ids:
+  - refund_before_shipping
+- id: kw-pair-11
+  category: keyword_pair
+  query: 满减活动和金卡会员券可以叠加使用吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-12
+  category: keyword_pair
+  query: 618 大促既可以满减，也可以用会员券吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-pair-13
+  category: keyword_pair
+  query: 优惠券和 618 满减能不能一起结算？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-promo-09
+  category: paraphrase
+  query: 满三百少四十，同样优惠能不能再用一次？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-promo-10
+  category: paraphrase
+  query: 节日活动那条少收四十的规定，重复享受允许吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-promo-11
+  category: paraphrase
+  query: 购物车里两张一样的减价券，能叠在一起吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-member-08
+  category: paraphrase
+  query: 金卡送的那张券，家人帮我下单时能用吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-member-09
+  category: paraphrase
+  query: 高等级会员的券，过了日子系统还认吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-invoice-06
+  category: paraphrase
+  query: 电子报销单是不是一天之内能在详情里下载？
+  expected_policy_ids:
+  - invoice_issue
+- id: para-invoice-07
+  category: paraphrase
+  query: 买完后多久能看到电子票据？
+  expected_policy_ids:
+  - invoice_issue
+- id: para-title-08
+  category: paraphrase
+  query: 还没开票，抬头公司名写错了，页面上能改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: para-title-09
+  category: paraphrase
+  query: 票已经出了，抬头要改，是不是得找人工？
+  expected_policy_ids:
+  - invoice_title_update
+- id: para-pair-05
+  category: paraphrase
+  query: 少四十的活动和金卡券，付款时能同时减吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-pair-06
+  category: paraphrase
+  query: 会员手里的券，能不能和满三百减四十一起用？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-refund-02
+  category: paraphrase
+  query: 款付了，仓库还没把货交出去，退钱要不要审批？
+  expected_policy_ids:
+  - refund_before_shipping
+- id: oral-11
+  category: oral
+  query: 618 的满减能不能叠金卡的券？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: oral-12
+  category: oral
+  query: 金卡那张优惠卷能转给别人吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: oral-13
+  category: oral
+  query: 电子发票二十四小时内能下吗？
+  expected_policy_ids:
+  - invoice_issue
+- id: oral-14
+  category: oral
+  query: 发票还没开，抬头打错了能改不？
+  expected_policy_ids:
+  - invoice_title_update
+- id: oral-15
+  category: oral
+  query: 大促叠券，满减和会员券行不行？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: oral-16
+  category: oral
+  query: 未发货退钱是不是得审批？
+  expected_policy_ids:
+  - refund_before_shipping
+- id: trap-09
+  category: trap
+  query: 订单详情里的电子发票什么时候能下载？
+  expected_policy_ids:
+  - invoice_issue
+- id: trap-10
+  category: trap
+  query: 快递单上的发票抬头错了怎么改？
+  expected_policy_ids:
+  - invoice_title_update
+- id: trap-11
+  category: trap
+  query: 只说叠加，不提会员券，大促满减还成立吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: trap-12
+  category: trap
+  query: 音箱库存别查了，先说 618 满减规则。
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: trap-13
+  category: trap
+  query: 耳机多少钱先放一边，金卡会员券能不能转让？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: trap-14
+  category: trap
+  query: 物流页面里提示电子发票已开具，抬头还能自己改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-promo-12
+  category: keyword
+  query: 618 满减和同类型满减券能否各享受一次？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-member-12
+  category: keyword
+  query: 金卡会员的平台会员券必须本人使用吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-invoice-09
+  category: keyword
+  query: 电子发票通常在完成后 24 小时内开具吗？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-title-10
+  category: keyword
+  query: 未开具的电子发票，抬头能在发票信息里修改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-pair-14
+  category: keyword_pair
+  query: 会员券可以和 618 满 300 减 40 一起用吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-promo-12
+  category: paraphrase
+  query: 少收四十这块，同样的活动优惠能用第二遍吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-title-10
+  category: paraphrase
+  query: 报销公司名写错且还没出票，能自己改抬头吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-promo-13
+  category: keyword
+  query: 618 大促里同类型满减券可以叠加使用吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-member-13
+  category: keyword
+  query: 金卡会员券可以转让给其他账号吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-invoice-10
+  category: keyword
+  query: 电子发票开具后在哪里查看和下载？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-title-11
+  category: keyword
+  query: 电子发票开具前可以修改发票抬头吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-pair-15
+  category: keyword_pair
+  query: 大促满减可以和平台会员券叠加吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: kw-promo-14
+  category: keyword
+  query: 618 期间同类型满减券允许叠两张吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-promo-15
+  category: keyword
+  query: 大促满 300 减 40 的活动说明在哪？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: kw-member-14
+  category: keyword
+  query: 金卡会员券能不能借给家人账号使用？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-member-15
+  category: keyword
+  query: 平台会员券超过有效期还能核销吗？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: kw-invoice-11
+  category: keyword
+  query: 电子发票是不是订单完成后一天内能开？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-invoice-12
+  category: keyword
+  query: 电子发票下载是不是在订单详情页？
+  expected_policy_ids:
+  - invoice_issue
+- id: kw-title-12
+  category: keyword
+  query: 发票还没开具，电子发票抬头能改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-title-13
+  category: keyword
+  query: 已经开具的发票抬头错了，要不要人工处理？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-refund-05
+  category: keyword
+  query: 未发货而且未出库，已支付订单退款要审批吗？
+  expected_policy_ids:
+  - refund_before_shipping
+- id: kw-pair-16
+  category: keyword_pair
+  query: 金卡会员券能不能和 618 满减一起用？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+  - member_coupon_gold_rule
+- id: para-promo-13
+  category: paraphrase
+  query: 满三百减四十这条，同样的券能用两次吗？
+  expected_policy_ids:
+  - promotion_618_stack_rule
+- id: para-member-10
+  category: paraphrase
+  query: 金卡领到的券，能不能放到别人的账号里用？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+- id: para-invoice-08
+  category: paraphrase
+  query: 电子票据一天内能在详情页下载吗？
+  expected_policy_ids:
+  - invoice_issue
+- id: para-title-11
+  category: paraphrase
+  query: 还没出票，抬头写错了能自己改吗？
+  expected_policy_ids:
+  - invoice_title_update
+- id: kw-member-16
+  category: keyword
+  query: 金卡会员券转赠规则是什么？
+  expected_policy_ids:
+  - member_coupon_gold_rule
+abstain:
+- id: out-01
+  category: abstain
+  query: 这次大促有没有火星会员隐藏券？
+- id: out-02
+  category: abstain
+  query: 这次大促有没有未发布的加赠规则？
+- id: out-03
+  category: abstain
+  query: 有没有一个不存在的活动可以叠券？
+- id: out-04
+  category: abstain
+  query: 未知活动的会员规则是什么？
+- id: out-05
+  category: abstain
+  query: 能帮我订机票和酒店吗？
+- id: out-06
+  category: abstain
+  query: 内部员工有没有隐藏折扣？
+- id: out-07
+  category: abstain
+  query: 明天上海会下雨吗？
+- id: out-08
+  category: abstain
+  query: 帮我写一首关于春天的诗。
+- id: out-09
+  category: abstain
+  query: 苹果手机怎么截屏？
+- id: out-10
+  category: abstain
+  query: 公司有没有年终奖？
+- id: out-11
+  category: abstain
+  query: 运费险怎么理赔？
+- id: out-12
+  category: abstain
+  query: 支持货到付款吗？
+- id: out-13
+  category: abstain
+  query: 积分能抵扣现金吗？
+- id: out-14
+  category: abstain
+  query: 生日当天有没有双倍券？
+- id: out-15
+  category: abstain
+  query: 黑卡有没有隐藏折扣？
+- id: out-16
+  category: abstain
+  query: 竞品店的满减怎么算？
+- id: out-17
+  category: abstain
+  query: 别的平台 618 满减是多少？
+- id: out-18
+  category: abstain
+  query: 学生认证有没有额外券？
+- id: out-19
+  category: abstain
+  query: 预售定金能膨胀吗？
+- id: out-20
+  category: abstain
+  query: 跨境商品的关税谁来出？
+- id: out-21
+  category: abstain
+  query: 门店自提能开发票吗？先别按网店规则答。
+- id: out-22
+  category: abstain
+  query: 朋友圈分享有没有助力券？
+- id: out-23
+  category: abstain
+  query: 企业采购可以月结吗？
+- id: out-24
+  category: abstain
+  query: 直播间专属价和结算页不一样听谁的？
+- id: ship-01
+  category: logistics_faq
+  query: 一般下单后几天能收到？
+- id: ship-02
+  category: logistics_faq
+  query: 默认发什么快递？
+- id: ship-03
+  category: logistics_faq
+  query: 可以指定发顺丰吗？
+- id: ship-04
+  category: logistics_faq
+  query: 周末和节假日送货吗？
+- id: ship-05
+  category: logistics_faq
+  query: 包裹放快递柜了怎么取？
+- id: ship-06
+  category: logistics_faq
+  query: 显示已签收但我没拿到怎么办？
+- id: ship-07
+  category: logistics_faq
+  query: 外包装破损，找快递还是找商家？
+- id: ship-08
+  category: logistics_faq
+  query: 偏远地区要加运费吗？
+- id: ship-09
+  category: logistics_faq
+  query: 港澳台可以配送吗？
+- id: ship-10
+  category: logistics_faq
+  query: 一个单里的商品会分开发货吗？
+- id: ship-11
+  category: logistics_faq
+  query: 发货后还能改收货人电话吗？
+- id: ship-12
+  category: logistics_faq
+  query: 运单号在哪里看？
+- id: ship-13
+  category: logistics_faq
+  query: 大促期间发货会延迟吗？
+- id: ship-14
+  category: logistics_faq
+  query: 预售商品什么时候发货？
+- id: ship-15
+  category: logistics_faq
+  query: 缺货会自动拆单吗？
+- id: ship-16
+  category: logistics_faq
+  query: 可以合包一起发吗？
+- id: ship-17
+  category: logistics_faq
+  query: 送货前会电话联系吗？
+- id: ship-18
+  category: logistics_faq
+  query: 快递停滞超过三天怎么办？
+- id: addr-01
+  category: address_faq
+  query: 地址写错了还没发出，能改吗？
+- id: addr-02
+  category: address_faq
+  query: 可以送到公司前台吗？
+- id: addr-03
+  category: address_faq
+  query: 能放到菜鸟驿站吗？
+- id: addr-04
+  category: address_faq
+  query: 收货人不是本人，别人能代收吗？
+- id: addr-05
+  category: address_faq
+  query: 地址太长写不下怎么办？
+- id: addr-06
+  category: address_faq
+  query: 学校快递点代收怎么填地址？
+- id: addr-07
+  category: address_faq
+  query: 下单后发现门牌号错了一位。
+- id: addr-08
+  category: address_faq
+  query: 可以改成送货上门吗？
+- id: exch-01
+  category: exchange_faq
+  query: 换货运费谁承担？
+- id: exch-02
+  category: exchange_faq
+  query: 定制品支持无理由换吗？
+- id: exch-03
+  category: exchange_faq
+  query: 吊牌剪了还能换吗？
+- id: exch-04
+  category: exchange_faq
+  query: 洗过的衣服还能换吗？
+- id: exch-05
+  category: exchange_faq
+  query: 赠品要一起寄回吗？
+- id: exch-06
+  category: exchange_faq
+  query: 换货有次数限制吗？
+- id: exch-07
+  category: exchange_faq
+  query: 质量问题的来回运费谁出？
+- id: exch-08
+  category: exchange_faq
+  query: 颜色发错了怎么换？
+- id: exch-09
+  category: exchange_faq
+  query: 少发了一件怎么补？
+- id: exch-10
+  category: exchange_faq
+  query: 内衣可以无理由吗？
+- id: exch-11
+  category: exchange_faq
+  query: 食品拆封后还能换吗？
+- id: exch-12
+  category: exchange_faq
+  query: 虚拟商品能退吗？
+- id: exch-13
+  category: exchange_faq
+  query: 七天是从签收当天算还是从第二天算？
+- id: exch-14
+  category: exchange_faq
+  query: 换货新的那件坏了还能再换吗？
+- id: exch-15
+  category: exchange_faq
+  query: 拒收之后钱多久回来？
+- id: pay-01
+  category: payment_faq
+  query: 微信支付失败了怎么重新付？
+- id: pay-02
+  category: payment_faq
+  query: 可以用信用卡吗？
+- id: pay-03
+  category: payment_faq
+  query: 花呗能分几期？
+- id: pay-04
+  category: payment_faq
+  query: 可以找人代付吗？
+- id: pay-05
+  category: payment_faq
+  query: 重复扣款了怎么处理？
+- id: pay-06
+  category: payment_faq
+  query: 付了款但没有生成购物单怎么办？
+- id: pay-07
+  category: payment_faq
+  query: 企业能对公转账吗？
+- id: pay-08
+  category: payment_faq
+  query: 购物金怎么用？
+- id: pay-09
+  category: payment_faq
+  query: 支付密码忘了怎么办？
+- id: pay-10
+  category: payment_faq
+  query: 可以货到付款吗？
+- id: pay-11
+  category: payment_faq
+  query: 组合支付怎么设置？
+- id: pay-12
+  category: payment_faq
+  query: 退回原路一般几天到账？
+- id: coupon-gap-01
+  category: coupon_gap
+  query: 店铺券和平台券能一起用吗？
+- id: coupon-gap-02
+  category: coupon_gap
+  query: 秒杀价还能用券吗？
+- id: coupon-gap-03
+  category: coupon_gap
+  query: 直播间的券在哪里领？
+- id: coupon-gap-04
+  category: coupon_gap
+  query: 券忘记领了还能补发吗？
+- id: coupon-gap-05
+  category: coupon_gap
+  query: 新客券老客户能用吗？
+- id: coupon-gap-06
+  category: coupon_gap
+  query: 优惠码在哪个输入框填？
+- id: coupon-gap-07
+  category: coupon_gap
+  query: 限品类券怎么看适用范围？
+- id: coupon-gap-08
+  category: coupon_gap
+  query: 红包和购物券有什么区别？
+- id: coupon-gap-09
+  category: coupon_gap
+  query: 拼团价还能再减吗？
+- id: coupon-gap-10
+  category: coupon_gap
+  query: 定金膨胀是怎么算的？
+- id: coupon-gap-11
+  category: coupon_gap
+  query: 学生认证有额外折扣吗？
+- id: coupon-gap-12
+  category: coupon_gap
+  query: 生日当天下单有礼吗？
+- id: coupon-trap-01
+  category: coupon_gap
+  query: 红包和优惠券能叠加吗？
+- id: coupon-trap-02
+  category: coupon_gap
+  query: 拼团和满减能叠加吗？
+- id: coupon-trap-03
+  category: coupon_gap
+  query: 秒杀商品参加 618 满减吗？
+- id: coupon-trap-04
+  category: coupon_gap
+  query: 包邮券和会员券能一起用吗？
+- id: inv-gap-01
+  category: invoice_gap
+  query: 能开增值税专用发票吗？
+- id: inv-gap-02
+  category: invoice_gap
+  query: 纸质发票怎么邮寄？
+- id: inv-gap-03
+  category: invoice_gap
+  query: 电子专票和普票有什么区别？
+- id: inv-gap-04
+  category: invoice_gap
+  query: 发票内容可以开成办公用品吗？
+- id: inv-gap-05
+  category: invoice_gap
+  query: 一张订单能拆成两张发票吗？
+- id: inv-gap-06
+  category: invoice_gap
+  query: 发票金额包含运费吗？
+- id: inv-gap-07
+  category: invoice_gap
+  query: 抬头可以开个人吗？
+- id: inv-gap-08
+  category: invoice_gap
+  query: 税号填错了怎么办？
+- id: inv-gap-09
+  category: invoice_gap
+  query: 发票丢了能补开吗？
+- id: inv-gap-10
+  category: invoice_gap
+  query: 月结发票怎么申请？
+- id: inv-gap-11
+  category: invoice_gap
+  query: 门店自提能开发票吗？
+- id: inv-gap-12
+  category: invoice_gap
+  query: 发票要随换货一起寄回吗？
+- id: member-gap-01
+  category: member_gap
+  query: 会员升级看消费金额还是看次数？
+- id: member-gap-02
+  category: member_gap
+  query: 积分多久过期？
+- id: member-gap-03
+  category: member_gap
+  query: 会员日是几号，折扣多少？
+- id: member-gap-04
+  category: member_gap
+  query: 付费会员可以中途退订吗？
+- id: member-gap-05
+  category: member_gap
+  query: 会员价和券哪个更划算？
+- id: member-gap-06
+  category: member_gap
+  query: 黑卡和金卡有什么差别？
+- id: member-gap-07
+  category: member_gap
+  query: 积分能换实物礼品吗？
+- id: member-gap-08
+  category: member_gap
+  query: 会员生日礼怎么领？
+- id: price-01
+  category: price_faq
+  query: 买完就降价了，能保价吗？
+- id: price-02
+  category: price_faq
+  query: 同款比别的平台贵，能补差价吗？
+- id: price-03
+  category: price_faq
+  query: 预售付了定金，尾款能用券吗？
+- id: price-04
+  category: price_faq
+  query: 直播间专属价和结算页不一样听谁的？
+- id: price-05
+  category: price_faq
+  query: 凑单满减是按付款金额还是按标价？
+- id: acct-01
+  category: account_faq
+  query: 怎么注销账号？
+- id: acct-02
+  category: account_faq
+  query: 手机号换了怎么登录？
+- id: acct-03
+  category: account_faq
+  query: 验证码一直收不到。
+- id: acct-04
+  category: account_faq
+  query: 可以更换绑定的微信吗？
+- id: acct-05
+  category: account_faq
+  query: 一个手机号能注册几个账号？
+- id: acct-06
+  category: account_faq
+  query: 账号被盗了怎么找回订单？
+- id: svc-01
+  category: service_faq
+  query: 在线客服几点到几点？
+- id: svc-02
+  category: service_faq
+  query: 我要投诉，找哪个入口？
+- id: svc-03
+  category: service_faq
+  query: 怀疑买到假货怎么处理？
+- id: svc-04
+  category: service_faq
+  query: 用了之后过敏了怎么办？
+- id: svc-05
+  category: service_faq
+  query: 电子产品保修多久？
+- id: svc-06
+  category: service_faq
+  query: 上门安装怎么预约？
+- id: svc-07
+  category: service_faq
+  query: 以旧换新怎么参加？
+- id: svc-08
+  category: service_faq
+  query: 商品少了配件找谁？
+- id: svc-09
+  category: service_faq
+  query: 评价写错了能改吗？
+- id: svc-10
+  category: service_faq
+  query: 不想收到营销短信怎么关？
+- id: border-01
+  category: special_goods_faq
+  query: 海淘商品要交税吗？
+- id: border-02
+  category: special_goods_faq
+  query: 清关一般要多久？
+- id: border-03
+  category: special_goods_faq
+  query: 生鲜化冻了怎么办？
+- id: border-04
+  category: special_goods_faq
+  query: 大家电送货入户吗？
+- id: border-05
+  category: special_goods_faq
+  query: 家具可以预约送货时间吗？
+- id: border-06
+  category: special_goods_faq
+  query: 易碎品破损怎么拍照留证？
+- id: border-07
+  category: special_goods_faq
+  query: 定制刻字后还能改文字吗？
+- id: border-08
+  category: special_goods_faq
+  query: 虚拟卡密什么时候发到手机？
+- id: border-09
+  category: special_goods_faq
+  query: 课程类商品支持回放多久？
+- id: border-10
+  category: special_goods_faq
+  query: 企业采购可以月结吗？
+- id: ship-19
+  category: logistics_faq
+  query: 同城急送和普通快递怎么选？
+- id: ship-20
+  category: logistics_faq
+  query: 夜间配送收额外费用吗？
+- id: ship-21
+  category: logistics_faq
+  query: 快递丢件了先赔商品还是先赔运费？
+- id: ship-22
+  category: logistics_faq
+  query: 显示运输中但三天没更新怎么办？
+- id: ship-23
+  category: logistics_faq
+  query: 可以放在快递柜超过多久？
+- id: ship-24
+  category: logistics_faq
+  query: 台风天会不会停运？
+- id: addr-09
+  category: address_faq
+  query: 地址识别错了省市区怎么办？
+- id: addr-10
+  category: address_faq
+  query: 部队地址能寄吗？
+- id: addr-11
+  category: address_faq
+  query: 酒店前台可以代收吗？
+- id: addr-12
+  category: address_faq
+  query: 英文地址怎么填？
+- id: exch-16
+  category: exchange_faq
+  query: 尺码不合适能换大一号吗？
+- id: exch-17
+  category: exchange_faq
+  query: 换货库存没有了会怎样？
+- id: exch-18
+  category: exchange_faq
+  query: 只退差价不换货可以吗？
+- id: exch-19
+  category: exchange_faq
+  query: 包装盒扔了还能换吗？
+- id: exch-20
+  category: exchange_faq
+  query: 试用装拆开还能换吗？
+- id: exch-21
+  category: exchange_faq
+  query: 跨境商品支持七天无理由吗？
+- id: pay-13
+  category: payment_faq
+  query: 云闪付可以付吗？
+- id: pay-14
+  category: payment_faq
+  query: 数字人民币怎么支付？
+- id: pay-15
+  category: payment_faq
+  query: 免密支付怎么关闭？
+- id: pay-16
+  category: payment_faq
+  query: 付款时提示风险拦截怎么办？
+- id: pay-17
+  category: payment_faq
+  query: 好友代付有金额上限吗？
+- id: pay-18
+  category: payment_faq
+  query: 分期手续费谁承担？
+- id: coupon-gap-13
+  category: coupon_gap
+  query: 省钱卡里的券每天能领几张？
+- id: coupon-gap-14
+  category: coupon_gap
+  query: 过期券能申请延期吗？
+- id: coupon-gap-15
+  category: coupon_gap
+  query: 兑换码显示已使用但没优惠怎么办？
+- id: coupon-gap-16
+  category: coupon_gap
+  query: 分享助力券怎么算成功？
+- id: coupon-gap-17
+  category: coupon_gap
+  query: 店铺关注礼和商品券能一起用吗？
+- id: coupon-gap-18
+  category: coupon_gap
+  query: 直播闪降和店铺券冲突吗？
+- id: inv-gap-13
+  category: invoice_gap
+  query: 数电票和电子普票是一回事吗？
+- id: inv-gap-14
+  category: invoice_gap
+  query: 发票备注栏能写合同号吗？
+- id: inv-gap-15
+  category: invoice_gap
+  query: 跨月还能换开发票吗？
+- id: inv-gap-16
+  category: invoice_gap
+  query: 汇总开票怎么申请？
+- id: inv-gap-17
+  category: invoice_gap
+  query: 发票税率显示不对找谁？
+- id: inv-gap-18
+  category: invoice_gap
+  query: 个人抬头后来改公司抬头还来得及吗？
+- id: member-gap-09
+  category: member_gap
+  query: 成长值怎么计算？
+- id: member-gap-10
+  category: member_gap
+  query: 会员到期后券还在吗？
+- id: member-gap-11
+  category: member_gap
+  query: 家庭卡可以共享会员价吗？
+- id: member-gap-12
+  category: member_gap
+  query: 积分抵扣有上限吗？
+- id: price-06
+  category: price_faq
+  query: 加购后涨价了按哪天的价格？
+- id: price-07
+  category: price_faq
+  query: 限时秒杀结束后价格恢复吗？
+- id: price-08
+  category: price_faq
+  query: 套装拆开卖能按套装价退差吗？
+- id: acct-07
+  category: account_faq
+  query: 实名认证失败怎么办？
+- id: acct-08
+  category: account_faq
+  query: 未成年人能下单吗？
+- id: acct-09
+  category: account_faq
+  query: 登录设备太多被限制了怎么解？
+- id: svc-11
+  category: service_faq
+  query: 差评后商家联系我，必须改评价吗？
+- id: svc-12
+  category: service_faq
+  query: 商品描述和实物不符怎么举证？
+- id: svc-13
+  category: service_faq
+  query: 七天无理由和质量问题哪个优先？
+- id: svc-14
+  category: service_faq
+  query: 延保服务怎么买？
+- id: border-11
+  category: special_goods_faq
+  query: 冷链包化了还能收吗？
+- id: border-12
+  category: special_goods_faq
+  query: 大件预约送货改期要收费吗？
+- id: border-13
+  category: special_goods_faq
+  query: 刻字商品发现错字怎么处理？
+- id: border-14
+  category: special_goods_faq
+  query: 充值话费没到账找谁？
+- id: border-15
+  category: special_goods_faq
+  query: 课程买错了能转给同事吗？
+- id: mkt-01
+  category: marketing_faq
+  query: 抽奖活动中奖后多久发货？
+- id: mkt-02
+  category: marketing_faq
+  query: 邀请好友下单双方各得什么？
+- id: mkt-03
+  category: marketing_faq
+  query: 签到积分能补签吗？
+- id: mkt-04
+  category: marketing_faq
+  query: 晒单返现有金额上限吗？
+- id: mkt-05
+  category: marketing_faq
+  query: 群接龙订单怎么退出？
+- id: mkt-06
+  category: marketing_faq
+  query: 新品预约提醒在哪里开？
+- id: safe-01
+  category: compliance_faq
+  query: 我的收货地址会被卖给广告商吗？
+- id: safe-02
+  category: compliance_faq
+  query: 支付密码存在商家那里吗？
+- id: safe-03
+  category: compliance_faq
+  query: 如何导出我的个人信息副本？
+- id: safe-04
+  category: compliance_faq
+  query: 不想被个性化推荐怎么关闭？
+- id: safe-05
+  category: compliance_faq
+  query: 未成年人消费如何申诉退款？
+- id: cs-01
+  category: merchant_faq
+  query: 商家不回消息多久可以平台介入？
+- id: cs-02
+  category: merchant_faq
+  query: 协商部分退款商家不同意怎么办？
+- id: cs-03
+  category: merchant_faq
+  query: 运费险在哪里看有没有买上？
+- id: cs-04
+  category: merchant_faq
+  query: 只退款不退货的条件是什么？
+- id: cs-05
+  category: merchant_faq
+  query: 虚假发货怎么判定？
+- id: cs-06
+  category: merchant_faq
+  query: 物流拦截成功后钱怎么退？
+- id: ship-25
+  category: logistics_faq
+  query: 乡村地址配送要加时吗？
+- id: svc-15
+  category: service_faq
+  query: 安装后不满意能重装一次吗？
+- id: ship-26
+  category: logistics_faq
+  query: 快递超区了会转寄还是退回？
+- id: pay-19
+  category: payment_faq
+  query: 银行卡限额导致付不了怎么办？
+- id: coupon-gap-19
+  category: coupon_gap
+  query: 整点抢券没抢到能补吗？
+- id: inv-gap-19
+  category: invoice_gap
+  query: 发票开成明细还是开成大类？
+- id: svc-16
+  category: service_faq
+  query: 商品有异味怎么处理？
+- id: mkt-07
+  category: marketing_faq
+  query: 预售尾款忘了付会怎样？
+- id: safe-06
+  category: compliance_faq
+  query: 收货手机号能从订单里删掉吗？
+- id: ship-27
+  category: logistics_faq
+  query: 派送失败会自动改约吗？
+- id: ship-28
+  category: logistics_faq
+  query: 包裹被退回商家之后还能再发出吗？
+- id: addr-13
+  category: address_faq
+  query: 地址里的房间号漏写了怎么办？
+- id: addr-14
+  category: address_faq
+  query: 公司地址周末没人收怎么办？
+- id: exch-22
+  category: exchange_faq
+  query: 换货发出的新件多久能到？
+- id: exch-23
+  category: exchange_faq
+  query: 只换颜色不换尺码可以吗？
+- id: pay-20
+  category: payment_faq
+  query: 支付成功但页面一直转圈怎么办？
+- id: pay-21
+  category: payment_faq
+  query: 亲属卡付款算谁的订单？
+- id: coupon-gap-20
+  category: coupon_gap
+  query: 券结算时显示不可用怎么看原因？
+- id: coupon-gap-21
+  category: coupon_gap
+  query: 跨店券和单店券能同时用吗？
+- id: inv-gap-20
+  category: invoice_gap
+  query: 发票购方地址电话必须填吗？
+- id: inv-gap-21
+  category: invoice_gap
+  query: 红字发票什么情况下才开？
+- id: member-gap-13
+  category: member_gap
+  query: 会员等级会降级吗？
+- id: price-09
+  category: price_faq
+  query: 购物车锁价能锁多久？
+- id: acct-10
+  category: account_faq
+  query: 换了手机怎么迁移收货地址？
+- id: svc-17
+  category: service_faq
+  query: 安装师傅迟到可以改约吗？
+- id: border-16
+  category: special_goods_faq
+  query: 鲜花送达后蔫了怎么办？
+- id: mkt-08
+  category: marketing_faq
+  query: 拼团失败定金怎么退？
+- id: safe-07
+  category: compliance_faq
+  query: 人脸识别数据保存多久？
+- id: cs-07
+  category: merchant_faq
+  query: 商家承诺赠品没发怎么处理？
+- id: ship-29
+  category: logistics_faq
+  query: 驿站代收的快递超过两天没取会退回吗？
+workflow:
+- id: wf-01
+  category: workflow
+  query: SO20260601090000008-a1000008 还没发货，我要退款
+  expected_intent: refund_request
+- id: wf-02
+  category: workflow
+  query: SO20260601090000008-a1000008 直接给我退款
+  expected_intent: refund_request
+- id: wf-03
+  category: workflow
+  query: SO20260601090000008-a1000008 直接把钱退给我
+  expected_intent: refund_request
+- id: wf-04
+  category: workflow
+  query: 马上给我退款，订单 SO20260601090000008-a1000008 还没发货
+  expected_intent: refund_request
+- id: wf-05
+  category: workflow
+  query: 不用审批也要退款，SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-06
+  category: workflow
+  query: 立刻退钱，订单是 SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-07
+  category: workflow
+  query: SO20260601090000008-a1000008 还没发货，我要取消订单
+  expected_intent: refund_request
+- id: wf-08
+  category: workflow
+  query: 别退款，只查一下 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-09
+  category: workflow
+  query: 暂不退款，查一下 SO20260602103000009-a1000009 的快递
+  expected_intent: order_query
+- id: wf-10
+  category: workflow
+  query: 先不退货，查一下 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-11
+  category: workflow
+  query: 如果以后我想退款，现在先查一下 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-12
+  category: workflow
+  query: SO20260712090000010-a1000010 已签收，我想七天无理由退货
+  expected_intent: return_request
+- id: wf-13
+  category: workflow
+  query: 不用审批，马上把 SO20260601090000008-a1000008 的钱退给我
+  expected_intent: refund_request
+- id: wf-14
+  category: workflow
+  query: 已经申请退款，SO20260602103000009-a1000009 进度怎么样
+  expected_intent: refund_status_query
+- id: wf-15
+  category: workflow
+  query: 退款规则是什么？我先不申请。
+  expected_intent: general_chat
+- id: wf-16
+  category: workflow
+  query: SERVICE_TIMEOUT 是什么意思？
+  expected_intent: general_chat
+- id: wf-17
+  category: workflow
+  query: 帮我催一下发货，订单 SO20260601090000008-a1000008
+  expected_intent: order_query
+- id: wf-18
+  category: workflow
+  query: 包裹显示签收了但我没收到，帮我查 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-19
+  category: workflow
+  query: 这个订单 SO20260601090000008-a1000008 帮我改一下收货地址
+  expected_intent: order_query
+- id: wf-20
+  category: workflow
+  query: 我只想换成另一个颜色。
+  expected_intent: general_chat
+- id: wf-21
+  category: workflow
+  query: 我想拒收这单快递。
+  expected_intent: order_query
+- id: wf-22
+  category: workflow
+  query: SO20260602103000009-a1000009 的退款到账了吗
+  expected_intent: refund_status_query
+- id: wf-23
+  category: workflow
+  query: 不要帮我退货，只看 SO20260602103000009-a1000009 的物流到哪了
+  expected_intent: order_query
+- id: wf-24
+  category: workflow
+  query: SO20260712090000010-a1000010 已签收，质量问题我要退货
+  expected_intent: return_request
+- id: wf-25
+  category: workflow
+  query: SO20260712090000010-a1000010 发错货了，我要退货
+  expected_intent: return_request
+- id: wf-26
+  category: workflow
+  query: 货还在路上，先不退款。
+  expected_intent: general_chat
+- id: wf-27
+  category: workflow
+  query: 如果将来要退货，现在先告诉我物流政策是什么？
+  expected_intent: general_chat
+- id: wf-28
+  category: workflow
+  query: SO20260601090000008-a1000008 还没出库，能退钱吗？
+  expected_intent: refund_request
+- id: wf-29
+  category: workflow
+  query: 帮我看看 SO20260602103000009-a1000009 的快递到哪了
+  expected_intent: order_query
+- id: wf-30
+  category: workflow
+  query: 订单 SO20260601090000008-a1000008 怎么还没发货
+  expected_intent: order_query
+- id: wf-31
+  category: workflow
+  query: 我想把 SO20260601090000008-a1000008 的收货电话改一下
+  expected_intent: order_query
+- id: wf-32
+  category: workflow
+  query: 只换尺码，先不说退货
+  expected_intent: general_chat
+- id: wf-33
+  category: workflow
+  query: SO20260602103000009-a1000009 退款审核通过了吗
+  expected_intent: refund_status_query
+- id: wf-34
+  category: workflow
+  query: SO20260712090000010-a1000010 已签收，商品破损我要退货
+  expected_intent: return_request
+- id: wf-35
+  category: workflow
+  query: 无需退款，查 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-36
+  category: workflow
+  query: 并不想退货，只看快递 SO20260602103000009-a1000009
+  expected_intent: order_query
+- id: wf-37
+  category: workflow
+  query: SO20260601090000008-a1000008 给我退款，还没发货
+  expected_intent: refund_request
+- id: wf-38
+  category: workflow
+  query: 帮我申请退款，订单 SO20260601090000008-a1000008 未出库
+  expected_intent: refund_request
+- id: wf-39
+  category: workflow
+  query: 退货流程是什么？我还在考虑。
+  expected_intent: general_chat
+- id: wf-40
+  category: workflow
+  query: 如果以后要退款，今天先不办
+  expected_intent: general_chat
+- id: wf-41
+  category: workflow
+  query: SO20260712090000010-a1000010 少件，我要退货
+  expected_intent: return_request
+- id: wf-42
+  category: workflow
+  query: 不是要退款，查一下 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-43
+  category: workflow
+  query: 帮我查 SO20260602103000009-a1000009 的快递走到哪了
+  expected_intent: order_query
+- id: wf-44
+  category: workflow
+  query: SO20260601090000008-a1000008 还没发货，我想申请退款
+  expected_intent: refund_request
+- id: wf-45
+  category: workflow
+  query: 不必退货，查一下 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-46
+  category: workflow
+  query: 帮我退款，SO20260601090000008-a1000008 还没出库
+  expected_intent: refund_request
+- id: wf-47
+  category: workflow
+  query: 给我退款，这单还没发货 SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-48
+  category: workflow
+  query: 我想退款，SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-49
+  category: workflow
+  query: 我要申请退款 SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-50
+  category: workflow
+  query: 我想申请退款，货还在仓库 SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-51
+  category: workflow
+  query: 帮我申请退款 SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-52
+  category: workflow
+  query: 直接给我退，订单 SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-53
+  category: workflow
+  query: 把钱退给我，SO20260601090000008-a1000008 未发货
+  expected_intent: refund_request
+- id: wf-54
+  category: workflow
+  query: 能退款吗？SO20260601090000008-a1000008 还没发货
+  expected_intent: refund_request
+- id: wf-55
+  category: workflow
+  query: 可以退款吗，SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-56
+  category: workflow
+  query: 还能退款吗？SO20260602103000009-a1000009 已经发货了
+  expected_intent: refund_request
+- id: wf-57
+  category: workflow
+  query: 能不能退款，SO20260601090000008-a1000008 未发货
+  expected_intent: refund_request
+- id: wf-58
+  category: workflow
+  query: 发起退款 SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-59
+  category: workflow
+  query: 办理退款，SO20260601090000008-a1000008 还没发货
+  expected_intent: refund_request
+- id: wf-60
+  category: workflow
+  query: 取消订单 SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-61
+  category: workflow
+  query: SO20260602103000009-a1000009 退款进度怎么样
+  expected_intent: refund_status_query
+- id: wf-62
+  category: workflow
+  query: SO20260602103000009-a1000009 退款处理到哪了
+  expected_intent: refund_status_query
+- id: wf-63
+  category: workflow
+  query: SO20260602103000009-a1000009 退款什么时候到账
+  expected_intent: refund_status_query
+- id: wf-64
+  category: workflow
+  query: SO20260602103000009-a1000009 退款到账了吗
+  expected_intent: refund_status_query
+- id: wf-65
+  category: workflow
+  query: SO20260602103000009-a1000009 退款还没到账
+  expected_intent: refund_status_query
+- id: wf-66
+  category: workflow
+  query: SO20260602103000009-a1000009 退款审核了吗
+  expected_intent: refund_status_query
+- id: wf-67
+  category: workflow
+  query: SO20260602103000009-a1000009 退款有没有通过
+  expected_intent: refund_status_query
+- id: wf-68
+  category: workflow
+  query: SO20260602103000009-a1000009 退款被拒了吗
+  expected_intent: refund_status_query
+- id: wf-69
+  category: workflow
+  query: 帮我看看 SO20260602103000009-a1000009 的退款
+  expected_intent: refund_status_query
+- id: wf-70
+  category: workflow
+  query: 我要退货 SO20260712090000010-a1000010
+  expected_intent: return_request
+- id: wf-71
+  category: workflow
+  query: 我想退货，SO20260712090000010-a1000010 已签收
+  expected_intent: return_request
+- id: wf-72
+  category: workflow
+  query: 帮我退货 SO20260712090000010-a1000010
+  expected_intent: return_request
+- id: wf-73
+  category: workflow
+  query: 给我退货，SO20260712090000010-a1000010
+  expected_intent: return_request
+- id: wf-74
+  category: workflow
+  query: 直接退货 SO20260712090000010-a1000010
+  expected_intent: return_request
+- id: wf-75
+  category: workflow
+  query: 我要申请退货 SO20260712090000010-a1000010
+  expected_intent: return_request
+- id: wf-76
+  category: workflow
+  query: 我想申请退货，SO20260712090000010-a1000010 已签收
+  expected_intent: return_request
+- id: wf-77
+  category: workflow
+  query: 帮我申请退货 SO20260712090000010-a1000010
+  expected_intent: return_request
+- id: wf-78
+  category: workflow
+  query: 申请退货 SO20260712090000010-a1000010 已签收
+  expected_intent: return_request
+- id: wf-79
+  category: workflow
+  query: 能退货吗？SO20260712090000010-a1000010 已经签收
+  expected_intent: return_request
+- id: wf-80
+  category: workflow
+  query: 可以退货吗，SO20260712090000010-a1000010
+  expected_intent: return_request
+- id: wf-81
+  category: workflow
+  query: 七天无理由，SO20260712090000010-a1000010 已签收
+  expected_intent: return_request
+- id: wf-82
+  category: workflow
+  query: 我想寄回 SO20260712090000010-a1000010
+  expected_intent: return_request
+- id: wf-83
+  category: workflow
+  query: SO20260712090000010-a1000010 质量问题，我要退货
+  expected_intent: return_request
+- id: wf-84
+  category: workflow
+  query: SO20260712090000010-a1000010 商品破损，帮我退货
+  expected_intent: return_request
+- id: wf-85
+  category: workflow
+  query: SO20260712090000010-a1000010 与描述不符，我要退货
+  expected_intent: return_request
+- id: wf-86
+  category: workflow
+  query: 请查 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-87
+  category: workflow
+  query: SO20260602103000009-a1000009 的快递到哪了
+  expected_intent: order_query
+- id: wf-88
+  category: workflow
+  query: 帮我看下订单 SO20260602103000009-a1000009
+  expected_intent: order_query
+- id: wf-89
+  category: workflow
+  query: 订单 SO20260601090000008-a1000008 发货了吗
+  expected_intent: order_query
+- id: wf-90
+  category: workflow
+  query: SO20260601090000008-a1000008 发货了吗
+  expected_intent: order_query
+- id: wf-91
+  category: workflow
+  query: 这个快递 SO20260602103000009-a1000009 还要多久
+  expected_intent: order_query
+- id: wf-92
+  category: workflow
+  query: 别退钱，查 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-93
+  category: workflow
+  query: 先不退货，看看 SO20260602103000009-a1000009 的快递
+  expected_intent: order_query
+- id: wf-94
+  category: workflow
+  query: 并不想退款，只查订单 SO20260602103000009-a1000009
+  expected_intent: order_query
+- id: wf-95
+  category: workflow
+  query: 退款政策是什么？我还没决定。
+  expected_intent: general_chat
+- id: wf-96
+  category: workflow
+  query: 退货流程有哪些？先不申请。
+  expected_intent: general_chat
+- id: wf-141
+  category: workflow
+  query: 帮我申请退款，SO20260601090000008-a1000008 还没出库
+  expected_intent: refund_request
+- id: wf-142
+  category: workflow
+  query: 发起退款，SO20260601090000008-a1000008 未发货
+  expected_intent: refund_request
+- id: wf-143
+  category: workflow
+  query: 办理退款 SO20260601090000008-a1000008
+  expected_intent: refund_request
+- id: wf-144
+  category: workflow
+  query: 能不能退款？SO20260601090000008-a1000008 还没发货
+  expected_intent: refund_request
+- id: wf-145
+  category: workflow
+  query: SO20260602103000009-a1000009 退款完成了吗
+  expected_intent: refund_status_query
+- id: wf-146
+  category: workflow
+  query: SO20260602103000009-a1000009 退款驳回了吗
+  expected_intent: refund_status_query
+- id: wf-147
+  category: workflow
+  query: 帮我看看 SO20260602103000009-a1000009 退款情况
+  expected_intent: refund_status_query
+- id: wf-148
+  category: workflow
+  query: 给我退货，SO20260712090000010-a1000010 已签收
+  expected_intent: return_request
+- id: wf-149
+  category: workflow
+  query: 我要申请退货，SO20260712090000010-a1000010
+  expected_intent: return_request
+- id: wf-150
+  category: workflow
+  query: 可以退货吗？SO20260712090000010-a1000010 已经签收
+  expected_intent: return_request
+- id: wf-151
+  category: workflow
+  query: 帮我看下 SO20260602103000009-a1000009 的快递
+  expected_intent: order_query
+- id: wf-152
+  category: workflow
+  query: 订单 SO20260601090000008-a1000008 的物流更新了吗
+  expected_intent: order_query
+- id: wf-153
+  category: workflow
+  query: 不想退款，查 SO20260602103000009-a1000009 的快递
+  expected_intent: order_query
+- id: wf-154
+  category: workflow
+  query: 退款规则是什么？我只是先问一下。
+  expected_intent: general_chat
+- id: wf-155
+  category: workflow
+  query: 假如将来要退货，今天先查 SO20260602103000009-a1000009 的物流
+  expected_intent: order_query
+- id: wf-156
+  category: workflow
+  query: 请直接退货，SO20260712090000010-a1000010 已经签收
+  expected_intent: return_request

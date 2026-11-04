@@ -443,7 +443,9 @@ export type EvalCaseResult = {
   actual_trace_events?: string[];
   missing_tools?: string[];
   unexpected_tools?: string[];
+  missing_tool_outputs?: string[];
   missing_citations?: string[];
+  missing_citation_snippets?: string[];
   missing_trace_events?: string[];
   missing_session_state?: string[];
   forbidden_text_hits?: string[];
